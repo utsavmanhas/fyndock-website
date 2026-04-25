@@ -39,3 +39,6 @@ yarn-error.log*
 *.tmp
 *.bak
 *.orig
+
+# Claude Code internal memory
+memory/
