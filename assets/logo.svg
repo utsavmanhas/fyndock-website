@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  
+  <g>
+    
+    <rect x="4" y="8" width="6" height="32" rx="3" fill="#C4A35A"></rect>
+    
+    <rect x="4" y="8" width="22" height="6" rx="3" fill="#2A1F3D"></rect>
+    <rect x="4" y="21" width="16" height="5" rx="2.5" fill="#2A1F3D"></rect>
+    <rect x="4" y="34" width="22" height="6" rx="3" fill="#2A1F3D"></rect>
+    
+    <circle cx="30" cy="11" r="3" fill="#C4A35A"></circle>
+  </g>
+  
+  <text x="44" y="33" font-family="&#39;Playfair Display&#39;, Georgia, serif" font-size="22" font-weight="500" fill="#2A1F3D" letter-spacing="-0.5">Fyndock</text>
+</svg>

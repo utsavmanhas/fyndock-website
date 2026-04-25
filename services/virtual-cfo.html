@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual CFO — Fyndock</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../shared.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+.page-hero { background:var(--plum-900); padding:96px 0 80px; position:relative; overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 70% at 75% 40%, rgba(196,163,90,0.08) 0%, transparent 65%); pointer-events:none; }
+.hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-400); margin-bottom:18px; }
+.page-title { font-family:'Playfair Display',serif; font-size:52px; font-weight:500; line-height:1.1; letter-spacing:-0.03em; color:#fff; margin-bottom:20px; }
+.page-title em { font-style:italic; color:var(--gold-400); }
+.page-sub { font-size:18px; color:rgba(255,255,255,0.5); line-height:1.65; margin-bottom:36px; max-width:600px; }
+
+/* Deliverables */
+.deliverables-section { padding:96px 0; background:#fff; }
+.deliverables-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:56px; }
+.del-group { }
+.del-group-label { font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-600); margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border-subtle); }
+.del-items { display:flex; flex-direction:column; gap:10px; }
+.del-item { display:flex; gap:10px; align-items:flex-start; }
+.del-icon { width:28px; height:28px; background:var(--plum-50); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--plum-600); }
+.del-text { font-size:13.5px; color:var(--text-secondary); line-height:1.5; padding-top:4px; }
+
+/* Differentiators */
+.diff-section { padding:96px 0; background:var(--plum-900); }
+.diff-callout { font-family:'Playfair Display',serif; font-size:26px; font-style:italic; color:var(--gold-300); line-height:1.45; margin-bottom:48px; max-width:680px; }
+.diff-list { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.diff-item { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:var(--radius-lg); padding:24px 28px; display:flex; gap:16px; align-items:flex-start; transition:background 200ms; }
+.diff-item:hover { background:rgba(255,255,255,0.07); }
+.diff-icon { width:36px; height:36px; background:rgba(196,163,90,0.12); border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold-400); }
+.diff-title { font-size:14px; font-weight:600; color:#fff; margin-bottom:4px; }
+.diff-desc { font-size:13px; color:rgba(255,255,255,0.45); line-height:1.55; }
+
+/* Pricing CTA */
+.vcfo-cta { padding:80px 0; background:var(--gold-100); text-align:center; }
+.vcfo-cta h2 { font-family:'Playfair Display',serif; font-size:38px; font-weight:500; color:var(--plum-900); letter-spacing:-0.02em; margin-bottom:12px; }
+.vcfo-cta-price { font-family:'JetBrains Mono',monospace; font-size:20px; color:var(--plum-700); margin-bottom:28px; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html"><img src="../assets/logo.svg" height="28" alt="Fyndock"></a>
+    <div class="nav-links">
+      <a class="nav-link active" href="virtual-cfo.html">Services</a>
+      <a class="nav-link" href="mis-reports.html">MIS Reports</a>
+      <a class="nav-link" href="../how-it-works.html">How It Works</a>
+      <a class="nav-link" href="../case-studies.html">Case Studies</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <a href="../contact.html"><button class="btn-ghost">Book a Call</button></a>
+      <a href="../contact.html"><button class="btn-primary">Get Free Sample</button></a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="section-wrap">
+    <div class="hero-eyebrow">Virtual CFO Services</div>
+    <h1 class="page-title">The CFO you always needed.<br><em>Fractional. Brilliant. Yours.</em></h1>
+    <p class="page-sub">Get a full-stack CFO function without the ₹50L/year hire. Fyndock Virtual CFO clients raise faster, burn smarter, and board better.</p>
+    <a href="../contact.html"><button class="btn-lg-primary">Book a Virtual CFO Discovery Call <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button></a>
+  </div>
+</section>
+
+<section class="deliverables-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow">What's Included</div>
+    <h2 class="section-title">A complete CFO function, not just reports.</h2>
+    <p class="section-body">Three layers of financial leadership — what you get every month, on demand, and as strategic advisory.</p>
+    <div class="deliverables-grid">
+      <div class="del-group">
+        <div class="del-group-label">Monthly Deliverables</div>
+        <div class="del-items">
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="file-text" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Board-ready financial pack (P&L, BS, CF, KPI summary)</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="trending-up" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Cash flow forecast + runway projection</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="calendar" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Compliance calendar — GST, TDS, ROC</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="credit-card" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Vendor payment optimisation</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="bar-chart-2" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Full 8-sheet MIS report</div>
+          </div>
+        </div>
+      </div>
+      <div class="del-group">
+        <div class="del-group-label">On Demand</div>
+        <div class="del-items">
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="layers" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Fundraising financial model (3-statement)</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="folder-open" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Investor data room preparation</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="percent" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Cap table + dilution modelling</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="users" style="width:14px;height:14px"></i></div>
+            <div class="del-text">ESOP sizing and structuring</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="landmark" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Banking relationships and OD/CC negotiation</div>
+          </div>
+        </div>
+      </div>
+      <div class="del-group">
+        <div class="del-group-label">Strategic Advisory</div>
+        <div class="del-items">
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="target" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Unit economics design (CAC / LTV / CM)</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="tag" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Pricing strategy and margin analysis</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="sliders" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Budget vs actuals with variance commentary</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="git-branch" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Scenario planning (base / bull / bear)</div>
+          </div>
+          <div class="del-item">
+            <div class="del-icon"><i data-lucide="shield-check" style="width:14px;height:14px"></i></div>
+            <div class="del-text">Audit support and statutory filings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="diff-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow" style="color:var(--gold-400)">Why Fyndock is Different</div>
+    <div class="diff-callout">"Most Virtual CFO firms are compliance CAs with a strategy label. We are not."</div>
+    <div class="diff-list">
+      <div class="diff-item">
+        <div class="diff-icon"><i data-lucide="award" style="width:16px;height:16px"></i></div>
+        <div>
+          <div class="diff-title">CA credentials — 30+ year institutional depth</div>
+          <div class="diff-desc">ICAI-qualified. 1,000+ companies. Every number signed, every filing done on time. The compliance foundation is real.</div>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon"><i data-lucide="briefcase" style="width:16px;height:16px"></i></div>
+        <div>
+          <div class="diff-title">Executive search experience at board level</div>
+          <div class="diff-desc">We know what great CFOs actually do — we've placed them. That shapes how we run your finance function.</div>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon"><i data-lucide="trending-up" style="width:16px;height:16px"></i></div>
+        <div>
+          <div class="diff-title">VC/PE exposure across climate, D2C, SaaS</div>
+          <div class="diff-desc">We've built financial infrastructure for VC funds, Series A startups, battery technology companies, and D2C brands.</div>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon"><i data-lucide="cpu" style="width:16px;height:16px"></i></div>
+        <div>
+          <div class="diff-title">AI-powered MIS infrastructure</div>
+          <div class="diff-desc">We deliver faster than a 3-person finance team. AI structures, CA validates. You get accuracy and speed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vcfo-cta">
+  <div class="section-wrap" style="text-align:center;">
+    <h2>Starting at ₹25,000/month.</h2>
+    <div class="vcfo-cta-price">Full CFO function. No full-time hire.</div>
+    <a href="../contact.html"><button class="cta-banner-btn" style="display:inline-flex;align-items:center;gap:8px;background:var(--plum-800);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:14px 32px;border-radius:var(--radius-md);border:none;cursor:pointer;">Book a Virtual CFO Discovery Call <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button></a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <img src="../assets/logo-light.svg" height="28" alt="Fyndock">
+      <p class="footer-tagline">CFO-grade financial intelligence for growth-stage companies.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="mis-reports.html">MIS Reports</a>
+        <a href="virtual-cfo.html">Virtual CFO</a>
+        <a href="../contact.html">FP&A Advisory</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../about.html">About</a>
+        <a href="../case-studies.html">Case Studies</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Fyndock. A Fyndock Financial Intelligence Company.</span>
+  </div>
+</footer>
+<script>lucide.createIcons();</script>
+</body>
+</html>

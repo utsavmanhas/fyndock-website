@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIS Reports — Fyndock</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../shared.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+.page-hero { background:var(--plum-900); padding:96px 0 80px; position:relative; overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 80% at 80% 50%, rgba(196,163,90,0.08) 0%, transparent 60%); pointer-events:none; }
+.page-hero-inner { max-width:1180px; margin:0 auto; padding:0 40px; max-width:780px; }
+.hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-400); margin-bottom:18px; }
+.page-title { font-family:'Playfair Display',serif; font-size:52px; font-weight:500; line-height:1.1; letter-spacing:-0.03em; color:#fff; margin-bottom:20px; }
+.page-title em { font-style:italic; color:var(--gold-400); }
+.page-sub { font-size:18px; color:rgba(255,255,255,0.5); line-height:1.65; margin-bottom:36px; max-width:580px; }
+
+/* Sheets explainer */
+.sheets-section { padding:96px 0; background:#fff; }
+.sheets-layout { display:grid; grid-template-columns:260px 1fr; gap:0; border:1px solid var(--border-subtle); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); margin-top:56px; }
+.sheets-nav { background:var(--plum-50); border-right:1px solid var(--border-subtle); padding:0; }
+.sheet-nav-item { padding:14px 20px; font-size:13.5px; font-weight:500; color:var(--text-secondary); cursor:pointer; border-bottom:1px solid var(--border-subtle); transition:all 150ms; display:flex; align-items:center; gap:10px; }
+.sheet-nav-item:hover { background:var(--plum-100); color:var(--text-primary); }
+.sheet-nav-item.active { background:#fff; color:var(--plum-800); font-weight:600; border-right:2px solid var(--gold-500); margin-right:-1px; }
+.sheet-num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-tertiary); min-width:22px; }
+.sheet-panel { padding:40px 44px; display:none; }
+.sheet-panel.active { display:block; }
+.sheet-panel-label { font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-600); margin-bottom:10px; }
+.sheet-panel-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:500; color:var(--text-primary); margin-bottom:16px; }
+.sheet-panel-desc { font-size:15px; color:var(--text-secondary); line-height:1.7; margin-bottom:28px; }
+.sheet-features { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.sheet-feature { display:flex; gap:8px; font-size:13.5px; color:var(--text-secondary); align-items:flex-start; line-height:1.45; }
+.sheet-feature::before { content:''; width:5px; height:5px; background:var(--gold-500); border-radius:50%; flex-shrink:0; margin-top:5px; }
+
+/* Pricing */
+.pricing-section { padding:96px 0; background:var(--surface-app); }
+.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; }
+.price-card { background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:36px 30px; position:relative; transition:box-shadow 200ms, transform 200ms; }
+.price-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+.price-card.recommended { border-color:var(--plum-300); box-shadow:var(--shadow-md); }
+.rec-badge { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--gold-500); color:var(--plum-900); font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:4px 14px; border-radius:var(--radius-full); white-space:nowrap; }
+.price-tier { font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:8px; }
+.price-amount { font-family:'JetBrains Mono',monospace; font-size:30px; font-weight:500; color:var(--text-primary); margin-bottom:4px; }
+.price-cadence { font-size:12px; color:var(--text-tertiary); margin-bottom:20px; }
+.price-features { list-style:none; margin-bottom:28px; display:flex; flex-direction:column; gap:9px; }
+.price-features li { font-size:13px; color:var(--text-secondary); display:flex; gap:8px; align-items:flex-start; line-height:1.45; }
+.price-features li::before { content:''; width:5px; height:5px; background:var(--gold-500); border-radius:50%; flex-shrink:0; margin-top:5px; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html"><img src="../assets/logo.svg" height="28" alt="Fyndock"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="../index.html#services">Services</a>
+      <a class="nav-link active" href="mis-reports.html">MIS Reports</a>
+      <a class="nav-link" href="../how-it-works.html">How It Works</a>
+      <a class="nav-link" href="../case-studies.html">Case Studies</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <a href="../contact.html"><button class="btn-ghost">Book a Call</button></a>
+      <a href="../contact.html"><button class="btn-primary">Get Free Sample</button></a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MIS Report Generation</div>
+    <h1 class="page-title">The MIS report your CA was <em>never going to build you.</em></h1>
+    <p class="page-sub">Fyndock converts your trial balance into an 8-sheet CFO-grade workbook — every month, with AI accuracy and CA verification.</p>
+    <a href="../contact.html"><button class="btn-lg-primary">Get Your Free Sample Report <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button></a>
+  </div>
+</section>
+
+<section class="sheets-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow">The 8 Sheets</div>
+    <h2 class="section-title">Every number, in every dimension.</h2>
+    <p class="section-body">Each sheet is purpose-built. Together, they give your board — and your team — a complete financial picture.</p>
+    <div class="sheets-layout">
+      <div class="sheets-nav">
+        <div class="sheet-nav-item active" onclick="showSheet(0,this)"><span class="sheet-num">01</span>Executive Summary</div>
+        <div class="sheet-nav-item" onclick="showSheet(1,this)"><span class="sheet-num">02</span>P&L Statement</div>
+        <div class="sheet-nav-item" onclick="showSheet(2,this)"><span class="sheet-num">03</span>Balance Sheet</div>
+        <div class="sheet-nav-item" onclick="showSheet(3,this)"><span class="sheet-num">04</span>Cash Flow</div>
+        <div class="sheet-nav-item" onclick="showSheet(4,this)"><span class="sheet-num">05</span>Revenue Deep-Dive</div>
+        <div class="sheet-nav-item" onclick="showSheet(5,this)"><span class="sheet-num">06</span>Cost & Margin</div>
+        <div class="sheet-nav-item" onclick="showSheet(6,this)"><span class="sheet-num">07</span>Industry KPIs</div>
+        <div class="sheet-nav-item" onclick="showSheet(7,this)"><span class="sheet-num">08</span>Action Tracker</div>
+      </div>
+      <div>
+        <div class="sheet-panel active">
+          <div class="sheet-panel-label">Sheet 01</div>
+          <div class="sheet-panel-title">Executive Summary Dashboard</div>
+          <div class="sheet-panel-desc">The first thing your board sees. A complete snapshot of where the business stands — KPI tiles with RAG indicators, a written CFO narrative, and an at-a-glance view of what needs attention this month. Board-shareable on its own.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">KPI snapshot: revenue, margin, runway, burn</div>
+            <div class="sheet-feature">RAG (Red/Amber/Green) status indicators</div>
+            <div class="sheet-feature">Written CFO narrative — plain English</div>
+            <div class="sheet-feature">MoM and YoY comparison</div>
+            <div class="sheet-feature">Red-flag callouts with recommended actions</div>
+            <div class="sheet-feature">Board-shareable format</div>
+          </div>
+        </div>
+        <div class="sheet-panel">
+          <div class="sheet-panel-label">Sheet 02</div>
+          <div class="sheet-panel-title">P&L Statement</div>
+          <div class="sheet-panel-desc">A fully structured P&L — actuals vs budget vs prior period. Not a raw trial balance printout. Proper line-item grouping, variance analysis, and a % of revenue waterfall that shows exactly where margin is being made or lost.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">Actuals vs budget vs prior period</div>
+            <div class="sheet-feature">Variance analysis (₹ and %)</div>
+            <div class="sheet-feature">% of revenue waterfall</div>
+            <div class="sheet-feature">EBITDA and contribution margin lines</div>
+            <div class="sheet-feature">Properly grouped line items</div>
+            <div class="sheet-feature">Flagged deviations highlighted</div>
+          </div>
+        </div>
+        <div class="sheet-panel">
+          <div class="sheet-panel-label">Sheet 03</div>
+          <div class="sheet-panel-title">Balance Sheet</div>
+          <div class="sheet-panel-desc">Cleaned directly from your raw trial balance. Working capital analysis, key financial ratios, and flagged deviations — current ratio, quick ratio, debt-equity. We surface what a CA would present to a lender.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">Cleaned from raw trial balance</div>
+            <div class="sheet-feature">Working capital analysis</div>
+            <div class="sheet-feature">Key financial ratios (CR, QR, D/E)</div>
+            <div class="sheet-feature">Debtor & creditor ageing</div>
+            <div class="sheet-feature">Flagged deviations from prior period</div>
+            <div class="sheet-feature">Audit-ready structure</div>
+          </div>
+        </div>
+        <div class="sheet-panel">
+          <div class="sheet-panel-label">Sheet 04</div>
+          <div class="sheet-panel-title">Cash Flow Statement</div>
+          <div class="sheet-panel-desc">Operating, investing, and financing activities — structured per IndAS norms. A live runway counter based on current burn, and a 13-week rolling forecast available on our Virtual CFO plan.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">Operating / investing / financing split</div>
+            <div class="sheet-feature">Live runway counter</div>
+            <div class="sheet-feature">Burn rate trend (3-month rolling)</div>
+            <div class="sheet-feature">13-week forecast (Virtual CFO plan)</div>
+            <div class="sheet-feature">Cash conversion cycle</div>
+            <div class="sheet-feature">IndAS-compliant structure</div>
+          </div>
+        </div>
+        <div class="sheet-panel">
+          <div class="sheet-panel-label">Sheet 05</div>
+          <div class="sheet-panel-title">Revenue Deep-Dive</div>
+          <div class="sheet-panel-desc">Revenue broken down by segment, channel, and product. MoM and YoY growth by line. Concentration risk alerts if a single customer or channel exceeds 25% of revenue — the kind of thing your board will ask about.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">Segment / channel / product breakdown</div>
+            <div class="sheet-feature">MoM and YoY growth analysis</div>
+            <div class="sheet-feature">Customer concentration alerts</div>
+            <div class="sheet-feature">Returns-adjusted net revenue (D2C)</div>
+            <div class="sheet-feature">Pipeline-to-revenue conversion (SaaS)</div>
+            <div class="sheet-feature">Top 10 customer analysis</div>
+          </div>
+        </div>
+        <div class="sheet-panel">
+          <div class="sheet-panel-label">Sheet 06</div>
+          <div class="sheet-panel-title">Cost & Margin Analysis</div>
+          <div class="sheet-panel-desc">Direct vs indirect cost attribution. Gross margin, contribution margin, and EBITDA walk. Department-level granularity on our Growth and Enterprise plans. The sheet that tells you where your money is actually going.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">Direct vs indirect cost attribution</div>
+            <div class="sheet-feature">Gross margin and contribution margin</div>
+            <div class="sheet-feature">EBITDA bridge / waterfall</div>
+            <div class="sheet-feature">Department-level P&L (Growth/Enterprise)</div>
+            <div class="sheet-feature">Cost trend analysis (6-month)</div>
+            <div class="sheet-feature">Vendor concentration flagging</div>
+          </div>
+        </div>
+        <div class="sheet-panel">
+          <div class="sheet-panel-label">Sheet 07</div>
+          <div class="sheet-panel-title">Industry KPI Dashboard</div>
+          <div class="sheet-panel-desc">Auto-selected KPIs based on your business model. We don't give SaaS metrics to a hospitality company. CAC/LTV/NRR for SaaS; RevPAR/ADR for hospitality; Batch P&L for EduTech; NAV/DPI/TVPI for funds.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">Auto-selected industry KPIs</div>
+            <div class="sheet-feature">SaaS: CAC, LTV, NRR, Churn</div>
+            <div class="sheet-feature">D2C: ROAS, Contribution Margin, Returns</div>
+            <div class="sheet-feature">Hospitality: RevPAR, ADR, Occupancy</div>
+            <div class="sheet-feature">Funds: NAV, DPI, TVPI, IRR</div>
+            <div class="sheet-feature">EduTech: Batch P&L, Cost per student</div>
+          </div>
+        </div>
+        <div class="sheet-panel">
+          <div class="sheet-panel-label">Sheet 08</div>
+          <div class="sheet-panel-title">Action Tracker & Red Flags</div>
+          <div class="sheet-panel-desc">The most actionable sheet. CFO-identified issues surfaced each month. Your monthly finance to-do list. GST mismatch alerts. Debtor ageing flags. Every item comes with a recommended action and an owner.</div>
+          <div class="sheet-features">
+            <div class="sheet-feature">CFO-identified issues (monthly)</div>
+            <div class="sheet-feature">Action items with owners</div>
+            <div class="sheet-feature">GST mismatch and ITC alerts</div>
+            <div class="sheet-feature">Debtor ageing flags (>60 days)</div>
+            <div class="sheet-feature">Regulatory deadline tracker</div>
+            <div class="sheet-feature">Prior month resolution tracking</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">Start with what you need. Scale when you grow.</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount">₹8,000<span style="font-size:14px;font-weight:400;color:var(--text-tertiary)">/mo</span></div>
+        <div class="price-cadence">Billed monthly</div>
+        <ul class="price-features">
+          <li>5 core sheets (Summary, P&L, BS, CF, KPIs)</li>
+          <li>Email delivery</li>
+          <li>1 revision round</li>
+          <li>48hr turnaround</li>
+          <li>Works with Tally &amp; Zoho Books</li>
+        </ul>
+        <a href="../contact.html"><button class="btn-lg-outline" style="width:100%">Get Started</button></a>
+      </div>
+      <div class="price-card recommended">
+        <div class="rec-badge">Recommended</div>
+        <div class="price-tier">Growth</div>
+        <div class="price-amount">₹15,000<span style="font-size:14px;font-weight:400;color:var(--text-tertiary)">/mo</span></div>
+        <div class="price-cadence">Billed monthly</div>
+        <ul class="price-features">
+          <li>Full 8-sheet workbook</li>
+          <li>GST/TDS reconciliation</li>
+          <li>Industry KPI dashboard</li>
+          <li>Written CFO narrative</li>
+          <li>24hr priority turnaround</li>
+          <li>Monthly 30-min review call</li>
+        </ul>
+        <a href="../contact.html"><button class="btn-lg-primary" style="width:100%">Get Started</button></a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-cadence">Contact us for pricing</div>
+        <ul class="price-features">
+          <li>Multi-entity consolidation</li>
+          <li>Department-level P&L</li>
+          <li>Board pack preparation</li>
+          <li>Dedicated CA + analyst team</li>
+          <li>Tally / Zoho / Odoo integration</li>
+          <li>Investor data room support</li>
+        </ul>
+        <a href="../contact.html"><button class="btn-lg-outline" style="width:100%">Talk to Us</button></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <img src="../assets/logo-light.svg" height="28" alt="Fyndock">
+      <p class="footer-tagline">CFO-grade financial intelligence for growth-stage companies.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="mis-reports.html">MIS Reports</a>
+        <a href="virtual-cfo.html">Virtual CFO</a>
+        <a href="../contact.html">FP&A Advisory</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../about.html">About</a>
+        <a href="../case-studies.html">Case Studies</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Fyndock. A Fyndock Financial Intelligence Company.</span>
+  </div>
+</footer>
+<script>
+lucide.createIcons();
+function showSheet(idx, el) {
+  document.querySelectorAll('.sheet-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+  document.querySelectorAll('.sheet-nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
