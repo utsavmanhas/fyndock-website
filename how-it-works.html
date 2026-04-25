@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Fyndock</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="shared.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+.page-hero { background:var(--plum-900); padding:96px 0 80px; position:relative; overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 60% at 70% 40%, rgba(196,163,90,0.08) 0%, transparent 60%); pointer-events:none; }
+.hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-400); margin-bottom:18px; }
+.page-title { font-family:'Playfair Display',serif; font-size:52px; font-weight:500; line-height:1.1; letter-spacing:-0.03em; color:#fff; margin-bottom:20px; }
+.page-title em { font-style:italic; color:var(--gold-400); }
+.page-sub { font-size:18px; color:rgba(255,255,255,0.5); line-height:1.65; max-width:580px; }
+
+/* Phase layout */
+.phases-section { padding:96px 0; background:#fff; }
+.phase { display:grid; grid-template-columns:200px 1fr; gap:64px; margin-bottom:72px; align-items:start; }
+.phase:last-child { margin-bottom:0; }
+.phase-left { position:sticky; top:88px; }
+.phase-num { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-600); margin-bottom:8px; }
+.phase-name { font-family:'Playfair Display',serif; font-size:28px; font-weight:500; color:var(--text-primary); line-height:1.2; margin-bottom:12px; }
+.phase-timeline { display:inline-flex; align-items:center; gap:6px; background:var(--plum-50); border:1px solid var(--border-subtle); border-radius:var(--radius-full); padding:5px 14px; font-size:12px; font-weight:500; color:var(--plum-700); }
+.phase-steps { display:flex; flex-direction:column; gap:0; position:relative; }
+.phase-steps::before { content:''; position:absolute; left:19px; top:20px; bottom:20px; width:1px; background:var(--border-default); }
+.phase-step { display:flex; gap:20px; align-items:flex-start; padding:0 0 28px; position:relative; }
+.phase-step:last-child { padding-bottom:0; }
+.step-dot { width:38px; height:38px; border-radius:50%; border:1.5px solid var(--plum-300); background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:1; color:var(--plum-600); }
+.step-body { padding-top:8px; }
+.step-title { font-size:16px; font-weight:600; color:var(--text-primary); margin-bottom:6px; }
+.step-desc { font-size:14px; color:var(--text-secondary); line-height:1.65; }
+
+/* Ongoing */
+.ongoing-section { padding:96px 0; background:var(--surface-app); }
+.cadence-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; }
+.cadence-card { background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:28px 24px; transition:box-shadow 200ms, transform 200ms; }
+.cadence-card:hover { box-shadow:var(--shadow-sm); transform:translateY(-2px); }
+.cadence-freq { font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-600); margin-bottom:12px; }
+.cadence-title { font-size:17px; font-weight:600; color:var(--text-primary); margin-bottom:10px; }
+.cadence-items { list-style:none; display:flex; flex-direction:column; gap:7px; }
+.cadence-items li { font-size:13px; color:var(--text-secondary); display:flex; gap:7px; align-items:flex-start; line-height:1.45; }
+.cadence-items li::before { content:''; width:4px; height:4px; background:var(--gold-500); border-radius:50%; flex-shrink:0; margin-top:5px; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/logo.svg" height="28" alt="Fyndock"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html#services">Services</a>
+      <a class="nav-link active" href="how-it-works.html">How It Works</a>
+      <a class="nav-link" href="services/mis-reports.html">MIS Reports</a>
+      <a class="nav-link" href="case-studies.html">Case Studies</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html"><button class="btn-ghost">Book a Call</button></a>
+      <a href="contact.html"><button class="btn-primary">Get Free Sample</button></a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="section-wrap">
+    <div class="hero-eyebrow">The Process</div>
+    <h1 class="page-title">From trial balance to<br><em>board-ready in 24 hours.</em></h1>
+    <p class="page-sub">Three phases. No complex onboarding. No data migration. We work with what you have.</p>
+  </div>
+</section>
+
+<section class="phases-section">
+  <div class="section-wrap">
+    <!-- Phase 1 -->
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">Phase 1</div>
+        <div class="phase-name">Onboarding</div>
+        <div class="phase-timeline"><i data-lucide="clock" style="width:12px;height:12px"></i> Week 1</div>
+      </div>
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="phone" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">Discovery call (30 mins)</div>
+            <div class="step-desc">We learn your business model, accounting system, and current reporting gaps. No homework required on your end.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="search" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">Assessment + configuration</div>
+            <div class="step-desc">We assess your accounting system and configure your Fyndock MIS template for your specific industry — SaaS, D2C, EduTech, or otherwise.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="check" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">No data migration needed</div>
+            <div class="step-desc">You keep your existing accounting software. We work with your trial balance export — Tally, Zoho, QuickBooks, or any CSV.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid var(--border-subtle); margin-bottom:72px;"></div>
+
+    <!-- Phase 2 -->
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">Phase 2</div>
+        <div class="phase-name">First MIS Report</div>
+        <div class="phase-timeline"><i data-lucide="clock" style="width:12px;height:12px"></i> Days 1–5</div>
+      </div>
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="upload-cloud" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">You export the trial balance</div>
+            <div class="step-desc">A standard export from Tally or Zoho Books. Takes 2 minutes. You email it or share via a secure link.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="cpu" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">AI structures and categorises</div>
+            <div class="step-desc">Our AI engine maps your chart of accounts, builds the 8 sheets, selects your industry KPIs, and flags potential anomalies for CA review.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="user-check" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">CA team validates every number</div>
+            <div class="step-desc">A qualified CA reviews the AI output — every figure, every reconciliation, every KPI. The AI drafts; the CA signs off.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="pen-tool" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">CFO narrative written</div>
+            <div class="step-desc">We write the monthly CFO commentary — plain English, no jargon, with specific observations and recommended actions.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="download" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">8-sheet Excel delivered + 30-min walkthrough</div>
+            <div class="step-desc">You receive the workbook. We walk you through it — what the numbers say, what to watch, what to act on.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid var(--border-subtle); margin-bottom:72px;"></div>
+
+    <!-- Phase 3 -->
+    <div class="phase">
+      <div class="phase-left">
+        <div class="phase-num">Phase 3</div>
+        <div class="phase-name">Ongoing Cadence</div>
+        <div class="phase-timeline"><i data-lucide="clock" style="width:12px;height:12px"></i> Every month</div>
+      </div>
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="refresh-cw" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">Trial balance in → MIS out within 48hrs</div>
+            <div class="step-desc">Every month, same process. You send the TB export, we return a complete MIS workbook. No chasing. No delays.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="alert-triangle" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">Red flags surfaced before you discover them</div>
+            <div class="step-desc">We identify issues before they become problems — cash runway pressure, GST mismatches, debtor ageing creep, margin erosion.</div>
+          </div>
+        </div>
+        <div class="phase-step">
+          <div class="step-dot"><i data-lucide="calendar" style="width:16px;height:16px"></i></div>
+          <div class="step-body">
+            <div class="step-title">Quarterly strategic review</div>
+            <div class="step-desc">Deeper review every quarter — budget vs actuals analysis, rolling forecast update, strategic priorities for the next quarter.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ongoing-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow">The Ongoing Cadence</div>
+    <h2 class="section-title">Finance that runs on schedule, not reminders.</h2>
+    <div class="cadence-grid">
+      <div class="cadence-card">
+        <div class="cadence-freq">Monthly</div>
+        <div class="cadence-title">Core Deliverables</div>
+        <ul class="cadence-items">
+          <li>Trial balance → 8-sheet MIS within 48hrs</li>
+          <li>Red flags and action items surfaced</li>
+          <li>30-min walkthrough call</li>
+          <li>GST/TDS reconciliation check</li>
+          <li>Compliance deadline calendar</li>
+        </ul>
+      </div>
+      <div class="cadence-card">
+        <div class="cadence-freq">Quarterly</div>
+        <div class="cadence-title">Strategic Reviews</div>
+        <ul class="cadence-items">
+          <li>Budget vs actuals deep-dive</li>
+          <li>Rolling 12-month forecast update</li>
+          <li>Unit economics review</li>
+          <li>Board pack preparation</li>
+          <li>Strategic priorities discussion</li>
+        </ul>
+      </div>
+      <div class="cadence-card">
+        <div class="cadence-freq">Annual</div>
+        <div class="cadence-title">Year-End & Planning</div>
+        <ul class="cadence-items">
+          <li>Annual budget-setting workshop</li>
+          <li>Year-end financial close</li>
+          <li>Audit support and coordination</li>
+          <li>Tax planning and structuring</li>
+          <li>Annual board presentation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gold-100);padding:80px 0;text-align:center;border-top:1px solid var(--gold-200);">
+  <div class="section-wrap" style="max-width:560px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:38px;font-weight:500;color:var(--plum-900);letter-spacing:-0.02em;margin-bottom:14px;">Ready to see it in action?</h2>
+    <p style="font-size:16px;color:var(--plum-600);margin-bottom:28px;">Send us your trial balance. We'll return a sample MIS report within 48 hours.</p>
+    <a href="contact.html"><button style="display:inline-flex;align-items:center;gap:8px;background:var(--plum-800);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:14px 32px;border-radius:var(--radius-md);border:none;cursor:pointer;transition:background 150ms;" onmouseover="this.style.background='var(--plum-700)'" onmouseout="this.style.background='var(--plum-800)'">Get My Free Sample Report <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button></a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <img src="assets/logo-light.svg" height="28" alt="Fyndock">
+      <p class="footer-tagline">CFO-grade financial intelligence for growth-stage companies.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services/mis-reports.html">MIS Reports</a>
+        <a href="services/virtual-cfo.html">Virtual CFO</a>
+        <a href="contact.html">FP&A Advisory</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Fyndock. A Fyndock Financial Intelligence Company.</span>
+  </div>
+</footer>
+<script>lucide.createIcons();</script>
+</body>
+</html>

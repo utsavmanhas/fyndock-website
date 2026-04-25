@@ -1,0 +1,319 @@
+/* ============================================================
+   FYNDOCK DESIGN SYSTEM — Colors & Typography
+   Virtual CFO for Indian Startups
+   ============================================================ */
+
+/* ── Google Fonts ──────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+
+  /* ── Brand Palette ───────────────────────────────────────── */
+
+  /* Plum scale — primary brand color */
+  --plum-950: #110B1C;
+  --plum-900: #1C1527;
+  --plum-800: #2A1F3D;
+  --plum-700: #3A2D54;
+  --plum-600: #4A3860;
+  --plum-500: #5E4A78;
+  --plum-400: #7A6494;
+  --plum-300: #9E8DB5;
+  --plum-200: #C5BAD6;
+  --plum-100: #E8E3F0;
+  --plum-50:  #F6F4FA;
+
+  /* Gold scale — accent */
+  --gold-900: #5A3E0A;
+  --gold-800: #7A5510;
+  --gold-700: #9A6E1A;
+  --gold-600: #B8852A;
+  --gold-500: #C4A35A;   /* primary accent */
+  --gold-400: #D4B878;
+  --gold-300: #E2CE9E;
+  --gold-200: #EDE0C0;
+  --gold-100: #F6EDD8;
+  --gold-50:  #FBF7EE;
+
+  /* Neutral (warm-tinted) */
+  --neutral-950: #0F0E0C;
+  --neutral-900: #1C1B18;
+  --neutral-800: #2E2D29;
+  --neutral-700: #48463F;
+  --neutral-600: #6B6860;
+  --neutral-500: #8E8B82;
+  --neutral-400: #AEABA3;
+  --neutral-300: #CCCAC4;
+  --neutral-200: #E4E2DC;
+  --neutral-100: #F2F0EB;
+  --neutral-50:  #FAF9F6;
+
+  /* Semantic status colors */
+  --green-700: #1A4731;
+  --green-600: #1E6B48;   /* success */
+  --green-100: #D4EDDE;
+
+  --amber-700: #7A4010;
+  --amber-500: #C17A2A;   /* warning */
+  --amber-100: #FDECD4;
+
+  --rose-700: #7A1530;
+  --rose-500: #B03054;    /* error / negative */
+  --rose-100: #F8D6E0;
+
+  /* ── Semantic Aliases ────────────────────────────────────── */
+
+  /* Surfaces */
+  --surface-app:     var(--neutral-50);      /* page background */
+  --surface-card:    #FFFFFF;
+  --surface-raised:  var(--neutral-100);     /* subtle elevation */
+  --surface-overlay: rgba(26, 21, 35, 0.48); /* modal overlay */
+  --surface-dark:    var(--plum-900);        /* dark mode surface */
+  --surface-dark-card: var(--plum-800);
+
+  /* Borders */
+  --border-subtle:   var(--plum-100);
+  --border-default:  var(--plum-200);
+  --border-strong:   var(--plum-300);
+  --border-dark:     rgba(255,255,255,0.08);
+
+  /* Text */
+  --text-primary:    var(--plum-900);
+  --text-secondary:  var(--plum-500);
+  --text-tertiary:   var(--plum-400);
+  --text-disabled:   var(--plum-300);
+  --text-inverse:    #FFFFFF;
+  --text-accent:     var(--gold-600);
+
+  /* Interactive */
+  --interactive-primary:        var(--plum-800);
+  --interactive-primary-hover:  var(--plum-700);
+  --interactive-primary-active: var(--plum-900);
+  --interactive-accent:         var(--gold-500);
+  --interactive-accent-hover:   var(--gold-400);
+  --interactive-muted:          var(--neutral-200);
+  --interactive-muted-hover:    var(--neutral-300);
+
+  /* Status */
+  --status-positive:  var(--green-600);
+  --status-warning:   var(--amber-500);
+  --status-negative:  var(--rose-500);
+  --status-info:      var(--plum-600);
+
+  /* Status backgrounds */
+  --status-positive-bg: var(--green-100);
+  --status-warning-bg:  var(--amber-100);
+  --status-negative-bg: var(--rose-100);
+  --status-info-bg:     var(--plum-100);
+
+  /* ── Typography ──────────────────────────────────────────── */
+
+  --font-display:  'Playfair Display', Georgia, serif;
+  --font-body:     'DM Sans', system-ui, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Size scale */
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   17px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  30px;
+  --text-3xl:  38px;
+  --text-4xl:  48px;
+  --text-5xl:  60px;
+
+  /* Weight */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Leading */
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.55;
+  --leading-relaxed:1.7;
+
+  /* Tracking */
+  --tracking-tight:  -0.03em;
+  --tracking-snug:   -0.01em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-widest:  0.12em;
+
+  /* ── Semantic Type Roles ─────────────────────────────────── */
+
+  --type-display-size:    var(--text-4xl);
+  --type-display-font:    var(--font-display);
+  --type-display-weight:  var(--weight-medium);
+  --type-display-leading: var(--leading-tight);
+  --type-display-tracking:var(--tracking-tight);
+
+  --type-h1-size:    var(--text-3xl);
+  --type-h1-font:    var(--font-display);
+  --type-h1-weight:  var(--weight-medium);
+
+  --type-h2-size:    var(--text-2xl);
+  --type-h2-font:    var(--font-display);
+  --type-h2-weight:  var(--weight-medium);
+
+  --type-h3-size:    var(--text-xl);
+  --type-h3-font:    var(--font-body);
+  --type-h3-weight:  var(--weight-semibold);
+
+  --type-h4-size:    var(--text-lg);
+  --type-h4-font:    var(--font-body);
+  --type-h4-weight:  var(--weight-semibold);
+
+  --type-body-size:    var(--text-base);
+  --type-body-font:    var(--font-body);
+  --type-body-weight:  var(--weight-regular);
+  --type-body-leading: var(--leading-normal);
+
+  --type-small-size:   var(--text-sm);
+  --type-small-font:   var(--font-body);
+  --type-small-weight: var(--weight-regular);
+
+  --type-label-size:    var(--text-xs);
+  --type-label-font:    var(--font-body);
+  --type-label-weight:  var(--weight-medium);
+  --type-label-tracking:var(--tracking-widest);
+
+  --type-caption-size:  var(--text-xs);
+  --type-mono-font:     var(--font-mono);
+
+  /* ── Spacing Scale ───────────────────────────────────────── */
+
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Radius ──────────────────────────────────────────────── */
+
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* ── Shadow ──────────────────────────────────────────────── */
+
+  --shadow-xs: 0 1px 2px rgba(42, 31, 61, 0.06);
+  --shadow-sm: 0 1px 4px rgba(42, 31, 61, 0.08), 0 1px 2px rgba(42, 31, 61, 0.06);
+  --shadow-md: 0 4px 16px rgba(42, 31, 61, 0.10), 0 1px 4px rgba(42, 31, 61, 0.06);
+  --shadow-lg: 0 8px 32px rgba(42, 31, 61, 0.12), 0 2px 8px rgba(42, 31, 61, 0.08);
+  --shadow-xl: 0 20px 60px rgba(42, 31, 61, 0.16), 0 4px 16px rgba(42, 31, 61, 0.10);
+  --shadow-inner: inset 0 1px 3px rgba(42, 31, 61, 0.08);
+
+  /* Gold glow — for accent elements */
+  --glow-gold: 0 0 24px rgba(196, 163, 90, 0.25);
+
+  /* ── Transition ──────────────────────────────────────────── */
+
+  --ease-out:  cubic-bezier(0.2, 0, 0, 1);
+  --ease-in:   cubic-bezier(0.4, 0, 1, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:   120ms;
+  --duration-normal: 200ms;
+  --duration-slow:   320ms;
+}
+
+/* ── Base Styles ─────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background: var(--surface-app);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Semantic Type Elements ──────────────────────────────────── */
+
+.display {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+h3, .h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+h4, .h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+p { line-height: var(--leading-normal); }
+
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.caption {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  line-height: var(--leading-normal);
+}
+
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* ── Utility ─────────────────────────────────────────────────── */
+
+.text-accent  { color: var(--text-accent); }
+.text-muted   { color: var(--text-secondary); }
+.text-positive{ color: var(--status-positive); }
+.text-negative{ color: var(--status-negative); }
+.text-warning { color: var(--status-warning); }

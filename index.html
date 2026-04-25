@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fyndock — CFO-Grade Financial Intelligence</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="shared.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* ── Hero ───────────────────────────────────────────────── */
+.hero { background: var(--plum-900); padding: 88px 0 0; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 55% 70% at 70% 50%, rgba(196,163,90,0.09) 0%, transparent 65%); pointer-events:none; }
+.hero::after { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 40% 50% at 20% 80%, rgba(90,63,140,0.18) 0%, transparent 60%); pointer-events:none; }
+.hero-inner { max-width:1180px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center; }
+.hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-400); margin-bottom:22px; }
+.hero-title { font-family:'Playfair Display',serif; font-size:54px; font-weight:500; line-height:1.08; letter-spacing:-0.03em; color:#fff; margin-bottom:22px; }
+.hero-title em { font-style:italic; color:var(--gold-400); }
+.hero-sub { font-size:17px; line-height:1.65; color:rgba(255,255,255,0.55); margin-bottom:36px; max-width:430px; }
+.hero-actions { display:flex; gap:12px; align-items:center; margin-bottom:40px; }
+.proof-bar { display:flex; gap:28px; flex-wrap:wrap; }
+.proof-item { display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(255,255,255,0.45); font-weight:400; }
+.proof-item::before { content:''; width:4px; height:4px; background:var(--gold-500); border-radius:50%; flex-shrink:0; }
+
+/* ── MIS Mock ───────────────────────────────────────────── */
+.mis-mock { position:relative; padding-bottom:32px; z-index:1; }
+.excel-window { background:#f2f2f0; border-radius:8px 8px 0 0; box-shadow: 0 24px 80px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.3); overflow:hidden; border:1px solid rgba(0,0,0,0.25); }
+.excel-titlebar { background:#217346; height:26px; display:flex; align-items:center; padding:0 10px; gap:6px; }
+.excel-titlebar span { font-size:11px; color:rgba(255,255,255,0.9); font-family:'DM Sans',sans-serif; flex:1; text-align:center; letter-spacing:0.01em; }
+.win-btn { width:11px; height:11px; border-radius:50%; }
+.excel-ribbon { background:#217346; border-bottom:2px solid #1a5c38; padding:2px 8px 4px; display:flex; gap:20px; align-items:flex-end; }
+.ribbon-tab { font-size:11px; color:rgba(255,255,255,0.7); padding:3px 8px; cursor:default; }
+.ribbon-tab.active { background:#fff; color:#217346; border-radius:3px 3px 0 0; font-weight:600; }
+.excel-formulabar { background:#fff; border-bottom:1px solid #d0d0d0; padding:3px 8px; display:flex; align-items:center; gap:8px; }
+.formula-cell { font-size:11px; font-family:'JetBrains Mono',monospace; color:#444; width:52px; border-right:1px solid #d0d0d0; padding-right:8px; }
+.formula-icon { font-size:11px; color:#888; }
+.formula-text { font-size:11px; font-family:'JetBrains Mono',monospace; color:#333; }
+.excel-colheaders { background:#f8f8f8; border-bottom:1px solid #d0d0d0; display:grid; grid-template-columns:32px 90px 90px 90px 80px 60px; }
+.col-header { font-size:10px; color:#666; text-align:center; padding:2px 0; border-right:1px solid #e0e0e0; font-family:'DM Sans',sans-serif; }
+.excel-body { background:#fff; padding:0; }
+.excel-row { display:grid; grid-template-columns:32px 1fr; border-bottom:1px solid #f0f0f0; }
+.row-num { font-size:9px; color:#999; text-align:center; padding:4px 2px; border-right:1px solid #e0e0e0; background:#f8f8f8; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; }
+.row-content { padding:3px 8px; }
+
+/* KPI tiles inside spreadsheet */
+.kpi-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; padding:6px 8px 4px; }
+.kpi-cell { background:#f0f7f3; border:1px solid #c3ddd0; border-radius:2px; padding:6px 8px; }
+.kpi-cell.warn { background:#fff8e1; border-color:#ffe082; }
+.kpi-cell.neg { background:#ffeef2; border-color:#f5c2ce; }
+.kpi-label { font-size:8.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:#555; font-family:'DM Sans',sans-serif; margin-bottom:2px; }
+.kpi-val { font-size:15px; font-weight:700; font-family:'JetBrains Mono',monospace; color:#1a3a2a; }
+.kpi-cell.warn .kpi-val { color:#7a4010; }
+.kpi-cell.neg .kpi-val { color:#7a1530; }
+.kpi-delta { font-size:9px; font-family:'JetBrains Mono',monospace; color:#1e6b48; margin-top:1px; }
+.kpi-cell.warn .kpi-delta { color:#c17a2a; }
+.kpi-cell.neg .kpi-delta { color:#b03054; }
+
+/* Chart area */
+.chart-area { padding:4px 8px 6px; }
+.chart-title { font-size:8.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:#555; margin-bottom:4px; font-family:'DM Sans',sans-serif; }
+.chart-bars { height:56px; display:flex; align-items:flex-end; gap:3px; background:#fafafa; border:1px solid #e8e8e8; border-radius:2px; padding:4px 6px 6px; position:relative; }
+.chart-bars::before { content:''; position:absolute; left:0;right:0;top:33%;height:1px;background:#e0e0e0;z-index:0; }
+.bar-group { display:flex; gap:1px; flex:1; align-items:flex-end; }
+.bar { border-radius:1px 1px 0 0; position:relative; z-index:1; }
+.chart-legend { display:flex; gap:12px; margin-top:4px; }
+.legend-item { display:flex; align-items:center; gap:3px; font-size:8px; color:#666; font-family:'DM Sans',sans-serif; }
+.legend-dot { width:6px; height:6px; border-radius:1px; }
+
+/* Narrative block */
+.narrative-area { padding:4px 8px 6px; }
+.narrative-box { background:#fffcf2; border:1px solid #e8d88a; border-radius:2px; padding:7px 8px; }
+.narrative-header { font-size:8.5px; font-weight:700; color:#7a5510; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px; font-family:'DM Sans',sans-serif; display:flex; align-items:center; gap:4px; }
+.narrative-text { font-size:9px; line-height:1.5; color:#444; font-family:'DM Sans',sans-serif; }
+.redflag-box { margin-top:5px; background:#fff0f3; border:1px solid #f5c2ce; border-radius:2px; padding:5px 7px; display:flex; gap:5px; align-items:flex-start; }
+.redflag-icon { font-size:9px; color:#b03054; flex-shrink:0; margin-top:1px; }
+.redflag-text { font-size:8.5px; color:#7a1530; line-height:1.45; font-family:'DM Sans',sans-serif; }
+.redflag-text strong { font-weight:700; }
+
+/* Sheet tabs */
+.excel-sheets { background:#f2f2f0; border-top:2px solid #d0d0d0; padding:0 0 0 36px; display:flex; align-items:center; gap:0; overflow:hidden; }
+.sheet-tab { font-size:10px; font-family:'DM Sans',sans-serif; padding:5px 12px; border:1px solid #d0d0d0; border-bottom:none; margin-right:1px; cursor:default; color:#555; background:#e8e8e6; white-space:nowrap; border-radius:3px 3px 0 0; }
+.sheet-tab.active-tab { background:#fff; color:#217346; font-weight:600; border-color:#d0d0d0; border-bottom:1px solid #fff; }
+
+/* ── Marquee ─────────────────────────────────────────────── */
+.marquee-wrap { background:var(--plum-950); border-top:1px solid rgba(255,255,255,0.04); padding:14px 0; overflow:hidden; }
+.marquee-track { display:flex; gap:0; white-space:nowrap; animation:marquee 28s linear infinite; }
+.marquee-item { font-size:12px; font-weight:500; color:rgba(255,255,255,0.32); padding:0 28px; letter-spacing:0.04em; text-transform:uppercase; }
+.marquee-dot { color:var(--gold-600); font-size:8px; line-height:18px; }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── Problem Section ─────────────────────────────────────── */
+.problem-section { background:var(--plum-900); padding:96px 0; }
+.problem-header { margin-bottom:60px; }
+.problem-eyebrow { color:var(--gold-400); }
+.problem-title { font-family:'Playfair Display',serif; font-size:42px; font-weight:500; line-height:1.15; letter-spacing:-0.025em; color:#fff; max-width:680px; }
+.problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.problem-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:var(--radius-lg); padding:32px; transition:background 200ms, border-color 200ms; }
+.problem-card:hover { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12); }
+.problem-number { font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.1em; margin-bottom:20px; }
+.problem-q { font-size:18px; font-weight:600; color:#fff; line-height:1.35; margin-bottom:10px; }
+.problem-q-sub { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.55; margin-bottom:20px; font-style:italic; }
+.problem-divider { width:32px; height:1px; background:rgba(196,163,90,0.3); margin-bottom:20px; }
+.problem-fix-label { font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-500); margin-bottom:8px; }
+.problem-fix { font-size:13.5px; color:rgba(255,255,255,0.6); line-height:1.6; }
+
+/* ── Services ────────────────────────────────────────────── */
+.services-section { padding:96px 0; background:#fff; }
+.services-header { margin-bottom:56px; }
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.svc-card { border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:36px 30px; background:#fff; position:relative; transition:box-shadow 200ms, transform 200ms, border-color 200ms; cursor:default; }
+.svc-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:var(--border-default); }
+.svc-badge { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--plum-800); color:#fff; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:4px 14px; border-radius:var(--radius-full); white-space:nowrap; }
+.svc-price { font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:500; color:var(--text-primary); margin-bottom:4px; }
+.svc-price-note { font-size:12px; color:var(--text-tertiary); margin-bottom:20px; }
+.svc-name { font-size:19px; font-weight:600; color:var(--text-primary); margin-bottom:6px; }
+.svc-desc { font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin-bottom:24px; }
+.svc-features { list-style:none; margin-bottom:28px; display:flex; flex-direction:column; gap:8px; }
+.svc-features li { font-size:13px; color:var(--text-secondary); display:flex; gap:8px; align-items:flex-start; line-height:1.45; }
+.svc-features li::before { content:''; width:5px; height:5px; background:var(--gold-500); border-radius:50%; flex-shrink:0; margin-top:5px; }
+.svc-cta { font-size:13.5px; font-weight:500; color:var(--gold-600); display:flex; align-items:center; gap:4px; cursor:pointer; transition:color 150ms; }
+.svc-cta:hover { color:var(--gold-500); }
+.svc-card.featured { background:var(--plum-900); border-color:var(--plum-700); }
+.svc-card.featured .svc-price, .svc-card.featured .svc-name { color:#fff; }
+.svc-card.featured .svc-price-note, .svc-card.featured .svc-desc { color:rgba(255,255,255,0.45); }
+.svc-card.featured .svc-features li { color:rgba(255,255,255,0.6); }
+.svc-card.featured .svc-features li::before { background:var(--gold-400); }
+.svc-card.featured .svc-cta { color:var(--gold-400); }
+.svc-card.featured .svc-badge { background:var(--gold-500); color:var(--plum-900); }
+
+/* ── How It Works ────────────────────────────────────────── */
+.hiw-section { padding:96px 0; background:var(--surface-app); }
+.hiw-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:56px; position:relative; }
+.hiw-steps::before { content:''; position:absolute; top:28px; left:calc(16.66% + 28px); right:calc(16.66% + 28px); height:1px; background:linear-gradient(90deg, var(--plum-200), var(--gold-300), var(--plum-200)); }
+.hiw-step { position:relative; text-align:center; }
+.step-circle { width:56px; height:56px; border-radius:50%; border:1.5px solid var(--plum-300); background:#fff; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:500; color:var(--plum-600); margin:0 auto 24px; position:relative; z-index:1; box-shadow:0 0 0 6px var(--surface-app); }
+.step-day { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-600); margin-bottom:8px; }
+.step-title { font-size:18px; font-weight:600; color:var(--text-primary); margin-bottom:10px; }
+.step-desc { font-size:13.5px; color:var(--text-secondary); line-height:1.6; max-width:280px; margin:0 auto; }
+
+/* ── Industries ──────────────────────────────────────────── */
+.industries-section { padding:80px 0; background:#fff; }
+.industries-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:48px; }
+.industry-tile { border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px 20px; background:#fff; cursor:default; transition:box-shadow 200ms, transform 200ms, border-color 200ms; }
+.industry-tile:hover { box-shadow:var(--shadow-sm); transform:translateY(-2px); border-color:var(--border-default); }
+.industry-icon { width:36px; height:36px; background:var(--plum-50); border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; margin-bottom:14px; color:var(--plum-700); }
+.industry-name { font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px; }
+.industry-kpis { display:flex; flex-direction:column; gap:2px; }
+.industry-kpi { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-tertiary); }
+
+/* ── Credibility ─────────────────────────────────────────── */
+.cred-section { padding:96px 0; background:var(--plum-900); }
+.cred-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; margin-bottom:56px; }
+.cred-stat { text-align:center; }
+.cred-num { font-family:'Playfair Display',serif; font-size:52px; font-weight:500; color:#fff; letter-spacing:-0.025em; line-height:1; }
+.cred-num sup { font-size:28px; color:var(--gold-400); }
+.cred-label { font-size:13px; color:rgba(255,255,255,0.4); margin-top:6px; }
+.cred-body { max-width:720px; margin:0 auto 40px; text-align:center; }
+.cred-body p { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; }
+.cred-callout { max-width:620px; margin:0 auto; border:1px solid rgba(196,163,90,0.25); border-radius:var(--radius-lg); padding:28px 36px; text-align:center; background:rgba(196,163,90,0.05); }
+.cred-callout p { font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:var(--gold-300); line-height:1.45; }
+
+/* ── CTA Banner ──────────────────────────────────────────── */
+.cta-banner { background:var(--gold-100); border-top:1px solid var(--gold-200); border-bottom:1px solid var(--gold-200); padding:80px 0; }
+.cta-banner-inner { max-width:640px; margin:0 auto; text-align:center; padding:0 40px; }
+.cta-banner h2 { font-family:'Playfair Display',serif; font-size:42px; font-weight:500; color:var(--plum-900); letter-spacing:-0.025em; line-height:1.15; margin-bottom:16px; }
+.cta-banner p { font-size:16px; color:var(--plum-600); margin-bottom:32px; line-height:1.6; }
+.cta-banner-btn { display:inline-flex; align-items:center; gap:8px; background:var(--plum-800); color:#fff; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:600; padding:14px 32px; border-radius:var(--radius-md); border:none; cursor:pointer; transition:background 150ms; }
+.cta-banner-btn:hover { background:var(--plum-700); }
+.cta-fine { font-size:12px; color:var(--plum-400); margin-top:16px; }
+
+/* ── Tweaks Panel ────────────────────────────────────────── */
+#tweaks-panel { position:fixed; bottom:24px; right:24px; background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-lg); box-shadow:var(--shadow-xl); padding:20px; width:240px; z-index:1000; display:none; }
+#tweaks-panel h3 { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-secondary); margin-bottom:16px; }
+.tweak-row { margin-bottom:14px; }
+.tweak-label { font-size:12px; color:var(--text-secondary); margin-bottom:6px; display:block; }
+.tweak-row select, .tweak-row input[type=range] { width:100%; }
+.tweak-row select { font-size:12px; padding:5px 8px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); color:var(--text-primary); background:#fff; }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="site-nav" id="main-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/logo.svg" height="28" alt="Fyndock"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html#services">Services</a>
+      <a class="nav-link" href="how-it-works.html">How It Works</a>
+      <a class="nav-link" href="services/mis-reports.html">MIS Reports</a>
+      <a class="nav-link" href="case-studies.html">Case Studies</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html"><button class="btn-ghost">Book a Call</button></a>
+      <a href="contact.html"><button class="btn-primary">Get Free Sample</button></a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">CFO-Grade Financial Intelligence</div>
+      <h1 class="hero-title">Your numbers tell<br>a story. <em>We make<br>sure you can<br>read it.</em></h1>
+      <p class="hero-sub">AI-powered MIS reports, Virtual CFO services, and FP&A advisory — backed by 30+ years of CA expertise.</p>
+      <div class="hero-actions">
+        <a href="contact.html"><button class="btn-lg-primary">Get Your Free MIS Report <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button></a>
+        <a href="contact.html"><button class="btn-lg-ghost">Book a CFO Call</button></a>
+      </div>
+      <div class="proof-bar">
+        <span class="proof-item">30+ Years CA Expertise</span>
+        <span class="proof-item">1,000+ Clients Served</span>
+        <span class="proof-item">98% Client Retention</span>
+        <span class="proof-item">15+ Industries</span>
+      </div>
+    </div>
+
+    <!-- MIS Report Mock -->
+    <div class="mis-mock">
+      <div class="excel-window">
+        <div class="excel-titlebar">
+          <div class="win-btn" style="background:#ff5f57"></div>
+          <div class="win-btn" style="background:#febc2e"></div>
+          <div class="win-btn" style="background:#28c840"></div>
+          <span>Fyndock_MIS_Q1-2026_Executive-Summary.xlsx — Excel</span>
+        </div>
+        <div class="excel-ribbon">
+          <div class="ribbon-tab active">Home</div>
+          <div class="ribbon-tab">Insert</div>
+          <div class="ribbon-tab">Formulas</div>
+          <div class="ribbon-tab">Data</div>
+          <div class="ribbon-tab">Review</div>
+        </div>
+        <div class="excel-formulabar">
+          <span class="formula-cell">B4</span>
+          <span class="formula-icon">ƒx</span>
+          <span class="formula-text">=SUM(Revenue_Jan:Revenue_Mar)</span>
+        </div>
+        <!-- KPI Row -->
+        <div class="kpi-row">
+          <div class="kpi-cell">
+            <div class="kpi-label">Net Revenue</div>
+            <div class="kpi-val">₹2.4Cr</div>
+            <div class="kpi-delta">▲ 18.0% vs Budget</div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-label">Gross Margin</div>
+            <div class="kpi-val">62.4%</div>
+            <div class="kpi-delta">▲ 4.1pp vs Prior</div>
+          </div>
+          <div class="kpi-cell neg">
+            <div class="kpi-label">Cash Runway</div>
+            <div class="kpi-val">14 mo</div>
+            <div class="kpi-delta">▼ 2 mo vs Forecast</div>
+          </div>
+        </div>
+        <!-- Chart -->
+        <div class="chart-area">
+          <div class="chart-title">Revenue vs Budget — Q1 2026 (₹ Lakhs)</div>
+          <div class="chart-bars" id="heroChart">
+            <!-- bars injected by JS -->
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#217346"></div>Actual</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#c0c0c0"></div>Budget</div>
+          </div>
+        </div>
+        <!-- Narrative -->
+        <div class="narrative-area">
+          <div class="narrative-box">
+            <div class="narrative-header">
+              <span>📋</span> CFO Narrative — Q1 2026
+            </div>
+            <div class="narrative-text">Revenue outperformed budget by ₹31L driven by strong Jan-Feb performance. EBITDA margins improved 210bps on cost discipline. Working capital improved; debtor days reduced from 47 to 38. Cash runway risk flagged below.</div>
+            <div class="redflag-box">
+              <span class="redflag-icon">⚑</span>
+              <div class="redflag-text"><strong>Red Flag:</strong> Cash runway declined 2 months due to ₹18L capex advance in March. Recommend reviewing capex schedule against fundraise timeline. Track weekly.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Sheet Tabs -->
+        <div class="excel-sheets">
+          <div class="sheet-tab active-tab">Summary</div>
+          <div class="sheet-tab">P&amp;L</div>
+          <div class="sheet-tab">Balance Sheet</div>
+          <div class="sheet-tab">Cash Flow</div>
+          <div class="sheet-tab">Revenue</div>
+          <div class="sheet-tab">Costs</div>
+          <div class="sheet-tab">KPIs</div>
+          <div class="sheet-tab">Flags</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack">
+    <!-- injected by JS -->
+  </div>
+</div>
+
+<!-- Problem Section -->
+<section class="problem-section">
+  <div class="section-wrap">
+    <div class="problem-header">
+      <div class="section-eyebrow problem-eyebrow">The Fyndock Thesis</div>
+      <h2 class="problem-title">Most founders are flying blind. Their accountant files returns. Nobody reads the numbers.</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-number">01 / REPORTING GAP</div>
+        <div class="problem-q">You get a trial balance. Not an insight.</div>
+        <div class="problem-q-sub">"What does this number actually mean for my business?"</div>
+        <div class="problem-divider"></div>
+        <div class="problem-fix-label">Fyndock Fix</div>
+        <div class="problem-fix">We convert your raw TB into a CFO-grade 8-sheet MIS report — automatically, with narrative and red-flag alerts.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-number">02 / STRATEGY GAP</div>
+        <div class="problem-q">Your CA is compliance-focused. Not strategy-focused.</div>
+        <div class="problem-q-sub">"Who's thinking about our financial strategy?"</div>
+        <div class="problem-divider"></div>
+        <div class="problem-fix-label">Fyndock Fix</div>
+        <div class="problem-fix">We carry CA credentials AND VC-grade analytical training. We've sat on the other side of the table.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-number">03 / COST GAP</div>
+        <div class="problem-q">You can't afford a full-time CFO at ₹40–60L/year.</div>
+        <div class="problem-q-sub">"Is there a better option than hiring too early?"</div>
+        <div class="problem-divider"></div>
+        <div class="problem-fix-label">Fyndock Fix</div>
+        <div class="problem-fix">You get a complete Virtual CFO function from Day 1, starting at <span class="mono" style="color:var(--gold-300)">₹25,000/month</span>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services-section" id="services">
+  <div class="section-wrap">
+    <div class="services-header">
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">Three ways Fyndock pays for itself</h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-price mono">₹8,000<span style="font-size:14px;font-weight:400;color:var(--text-tertiary)">/mo</span></div>
+        <div class="svc-price-note">Starting price</div>
+        <div class="svc-name">MIS Report Generation</div>
+        <div class="svc-desc">From your raw Tally or Zoho trial balance to a boardroom-ready 8-sheet Excel workbook — in 24 hours.</div>
+        <ul class="svc-features">
+          <li>8-sheet Excel workbook, auto-structured</li>
+          <li>P&L / BS / Cash Flow reconciled</li>
+          <li>Industry-specific KPIs</li>
+          <li>Written CFO narrative</li>
+          <li>GST/TDS reconciliation layer</li>
+        </ul>
+        <a class="svc-cta" href="services/mis-reports.html">See a Sample Report <i data-lucide="arrow-right" style="width:12px;height:12px"></i></a>
+      </div>
+      <div class="svc-card featured">
+        <div class="svc-badge">Most Popular</div>
+        <div class="svc-price mono">₹25,000<span style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.3)">/mo</span></div>
+        <div class="svc-price-note" style="color:rgba(255,255,255,0.35)">Starting price</div>
+        <div class="svc-name">Virtual CFO</div>
+        <div class="svc-desc" style="color:rgba(255,255,255,0.45)">A complete CFO function — board packs, forecasting, fundraising support, investor reporting.</div>
+        <ul class="svc-features">
+          <li>Monthly board-ready financial pack</li>
+          <li>Cash flow forecasting + runway</li>
+          <li>Fundraising financial support</li>
+          <li>Investor reporting</li>
+          <li>ESOP structuring & banking liaison</li>
+        </ul>
+        <a class="svc-cta" href="services/virtual-cfo.html">Explore Virtual CFO <i data-lucide="arrow-right" style="width:12px;height:12px"></i></a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-price mono">₹50,000<span style="font-size:14px;font-weight:400;color:var(--text-tertiary)">/project</span></div>
+        <div class="svc-price-note">Starting price</div>
+        <div class="svc-name">FP&A Advisory</div>
+        <div class="svc-desc">Unit economics, scenario planning, and investor-grade financial models for your next raise.</div>
+        <ul class="svc-features">
+          <li>3-statement financial model</li>
+          <li>Unit economics: CAC / LTV / CM</li>
+          <li>Department-level P&L</li>
+          <li>Scenario planning</li>
+          <li>Pitch deck financials</li>
+        </ul>
+        <a class="svc-cta" href="contact.html">Discuss FP&A <i data-lucide="arrow-right" style="width:12px;height:12px"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="hiw-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow">The Process</div>
+    <h2 class="section-title">Up and running in 24 hours.</h2>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="step-circle">01</div>
+        <div class="step-day">Day 1</div>
+        <div class="step-title">Connect Your Books</div>
+        <div class="step-desc">Share your Tally or Zoho trial balance, or give read-only access. No complex onboarding — we work with what you have.</div>
+      </div>
+      <div class="hiw-step">
+        <div class="step-circle">02</div>
+        <div class="step-day">24–48 Hours</div>
+        <div class="step-title">We Build Your Intelligence Layer</div>
+        <div class="step-desc">AI structures the report and selects industry KPIs. Our CA team validates every number. Humans and AI, both in the loop.</div>
+      </div>
+      <div class="hiw-step">
+        <div class="step-circle">03</div>
+        <div class="step-day">Every Month</div>
+        <div class="step-title">You Get a Report You Can Use</div>
+        <div class="step-desc">8-sheet Excel workbook with CFO narrative, delivered monthly. Consistent. No chasing. Board-shareable from day one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Industries -->
+<section class="industries-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Industry Coverage</div>
+    <h2 class="section-title">Built for the sectors we know deeply</h2>
+    <div class="industries-grid">
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="cpu" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">SaaS & Tech Startups</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">MRR · ARR · CAC · LTV</span>
+          <span class="industry-kpi">Churn · NRR · Payback Period</span>
+        </div>
+      </div>
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="shopping-bag" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">D2C & E-commerce</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">Contribution Margin · ROAS</span>
+          <span class="industry-kpi">Returns-adj Net Rev · SKU P&L</span>
+        </div>
+      </div>
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="graduation-cap" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">EduTech</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">Batch P&L · Cost per Student</span>
+          <span class="industry-kpi">Program-wise Margin · Attrition</span>
+        </div>
+      </div>
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="leaf" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">Climate & Deep Tech</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">Grant Utilisation · R&D Burn</span>
+          <span class="industry-kpi">Project-level ROI · CO₂ Cost</span>
+        </div>
+      </div>
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="trending-up" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">VC & PE Funds</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">NAV · DPI · TVPI · IRR</span>
+          <span class="industry-kpi">LP Reporting · Portfolio MIS</span>
+        </div>
+      </div>
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="heart-pulse" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">Healthcare & Diagnostics</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">Revenue per Bed · ARPOB</span>
+          <span class="industry-kpi">Occupancy · OT Utilisation</span>
+        </div>
+      </div>
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="building-2" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">Hospitality & Real Estate</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">RevPAR · ADR · Occupancy</span>
+          <span class="industry-kpi">NOI · CapEx vs OpEx</span>
+        </div>
+      </div>
+      <div class="industry-tile">
+        <div class="industry-icon"><i data-lucide="globe" style="width:18px;height:18px"></i></div>
+        <div class="industry-name">NGOs & Section 8</div>
+        <div class="industry-kpis">
+          <span class="industry-kpi">Grant Compliance · Utilisation</span>
+          <span class="industry-kpi">FCRA · Programme-wise Cost</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Credibility -->
+<section class="cred-section">
+  <div class="section-wrap">
+    <div class="cred-stats">
+      <div class="cred-stat">
+        <div class="cred-num">30<sup>+</sup></div>
+        <div class="cred-label">Years of CA Practice</div>
+      </div>
+      <div class="cred-stat">
+        <div class="cred-num">1,000<sup>+</sup></div>
+        <div class="cred-label">Clients Served</div>
+      </div>
+      <div class="cred-stat">
+        <div class="cred-num">98<sup>%</sup></div>
+        <div class="cred-label">Client Retention</div>
+      </div>
+      <div class="cred-stat">
+        <div class="cred-num">15<sup>+</sup></div>
+        <div class="cred-label">Industry Domains</div>
+      </div>
+    </div>
+    <div style="margin-bottom:48px;text-align:center;">
+      <div class="section-eyebrow" style="color:var(--gold-400);margin-bottom:14px;">Our Credibility Anchor</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:500;color:#fff;letter-spacing:-0.02em;margin-bottom:20px;line-height:1.2;">30 years of CA precision. VC-grade financial acumen. AI-powered delivery.</h2>
+    </div>
+    <div class="cred-body">
+      <p>Fyndock is built on the foundation of S.P. Manhas & Company, a CA firm established in 1992, with offices in Dwarka and Janakpuri, New Delhi. What makes us different: our team carries CA credentials AND executive search experience at board level, deep VC/PE startup exposure across climate, battery, D2C, SaaS — and AI-powered MIS infrastructure no traditional CA firm can match.</p>
+    </div>
+    <div class="cred-callout">
+      <p>"We are, frankly, the CFO your CA firm was never trained to be."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2>Your first MIS report is on us.</h2>
+    <p>Send us your trial balance. We'll return a full Fyndock MIS sample. No commitment. No charge.</p>
+    <a href="contact.html"><button class="cta-banner-btn">Get My Free Sample Report <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button></a>
+    <div class="cta-fine">Works with Tally, Zoho Books, QuickBooks, or any trial balance CSV/XLSX</div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <img src="assets/logo-light.svg" height="28" alt="Fyndock">
+      <p class="footer-tagline">CFO-grade financial intelligence for growth-stage companies. Built on 30+ years of CA expertise, powered by AI.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services/mis-reports.html">MIS Reports</a>
+        <a href="services/virtual-cfo.html">Virtual CFO</a>
+        <a href="contact.html">FP&A Advisory</a>
+        <a href="contact.html">GST & Compliance</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@fyndock.com">hello@fyndock.com</a>
+        <a href="tel:+919810679800">+91 98106 79800</a>
+        <a>Dwarka, New Delhi</a>
+        <a>Janakpuri, New Delhi</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Fyndock. A Fyndock Financial Intelligence Company.</span>
+    <span class="footer-contact-line">530 Atulya Apartments, Sector-18B, Dwarka, New Delhi 110078</span>
+  </div>
+</footer>
+
+<!-- Tweaks Panel -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <div class="tweak-row">
+    <label class="tweak-label">Hero headline style</label>
+    <select id="twk-hero" onchange="applyTweak()">
+      <option value="serif">Playfair Display (serif)</option>
+      <option value="sans">DM Sans (sans-serif)</option>
+    </select>
+  </div>
+  <div class="tweak-row">
+    <label class="tweak-label">Featured card style</label>
+    <select id="twk-card" onchange="applyTweak()">
+      <option value="dark">Dark plum</option>
+      <option value="gold">Warm gold</option>
+    </select>
+  </div>
+  <div class="tweak-row">
+    <label class="tweak-label">Section density</label>
+    <select id="twk-density" onchange="applyTweak()">
+      <option value="spacious">Spacious</option>
+      <option value="compact">Compact</option>
+    </select>
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+// Hero bar chart
+const chartData = [
+  {actual:62,budget:58,label:'Jan'},
+  {actual:74,budget:70,label:'Feb'},
+  {actual:68,budget:82,label:'Mar'},
+];
+const chartEl = document.getElementById('heroChart');
+chartData.forEach(d => {
+  const g = document.createElement('div');
+  g.className = 'bar-group';
+  const ba = document.createElement('div');
+  ba.className = 'bar';
+  ba.style.cssText = `height:${d.actual}%;background:#217346;flex:1;opacity:0.85;`;
+  const bb = document.createElement('div');
+  bb.className = 'bar';
+  bb.style.cssText = `height:${d.budget}%;background:#b0b0b0;flex:1;opacity:0.6;`;
+  g.appendChild(ba); g.appendChild(bb);
+  chartEl.appendChild(g);
+  const lbl = document.createElement('div');
+  lbl.style.cssText = 'position:absolute;bottom:-14px;font-size:8px;font-family:"DM Sans",sans-serif;color:#888;';
+  chartEl.style.position = 'relative';
+  chartEl.appendChild(g);
+});
+
+// Marquee
+const items = ['D2C Brands','SaaS Startups','VC Funds','Climate Tech','EduTech','PE Portfolios','Healthcare','Deep Tech','Hospitality','Manufacturing','NGOs'];
+const track = document.getElementById('marqueeTrack');
+[...items,...items,...items].forEach((item,i) => {
+  const span = document.createElement('span');
+  span.className = 'marquee-item';
+  span.textContent = item;
+  track.appendChild(span);
+  if (i < items.length*3-1) {
+    const dot = document.createElement('span');
+    dot.className = 'marquee-dot';
+    dot.textContent = '·';
+    track.appendChild(dot);
+  }
+});
+
+// Tweaks
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"heroFont":"serif","featuredCard":"dark","density":"spacious"}/*EDITMODE-END*/;
+let state = {...TWEAK_DEFAULTS};
+
+function applyTweak() {
+  state.heroFont = document.getElementById('twk-hero').value;
+  state.featuredCard = document.getElementById('twk-card').value;
+  state.density = document.getElementById('twk-density').value;
+
+  document.querySelector('.hero-title').style.fontFamily =
+    state.heroFont === 'sans' ? "'DM Sans',sans-serif" : "'Playfair Display',serif";
+
+  const fc = document.querySelector('.svc-card.featured');
+  if (state.featuredCard === 'gold') {
+    fc.style.background = 'var(--gold-100)'; fc.style.borderColor = 'var(--gold-300)';
+    fc.querySelectorAll('.svc-price,.svc-name').forEach(el => el.style.color = 'var(--plum-900)');
+  } else {
+    fc.style.background = 'var(--plum-900)'; fc.style.borderColor = 'var(--plum-700)';
+    fc.querySelectorAll('.svc-price,.svc-name').forEach(el => el.style.color = '#fff');
+  }
+
+  document.querySelectorAll('.services-section,.hiw-section,.industries-section,.cred-section').forEach(s => {
+    s.style.padding = state.density === 'compact' ? '64px 0' : '96px 0';
+  });
+
+  window.parent.postMessage({type:'__edit_mode_set_keys', edits: state}, '*');
+}
+
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').style.display = 'block';
+  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').style.display = 'none';
+});
+window.parent.postMessage({type:'__edit_mode_available'}, '*');
+</script>
+</body>
+</html>

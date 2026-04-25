@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Fyndock</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="shared.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+.page-hero { background:var(--plum-900); padding:80px 0 64px; position:relative; overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 60% at 70% 40%, rgba(196,163,90,0.07) 0%, transparent 60%); pointer-events:none; }
+.hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-400); margin-bottom:18px; }
+.page-title { font-family:'Playfair Display',serif; font-size:48px; font-weight:500; line-height:1.1; letter-spacing:-0.03em; color:#fff; margin-bottom:16px; }
+.page-sub { font-size:17px; color:rgba(255,255,255,0.45); line-height:1.65; }
+
+.blog-section { padding:80px 0; background:#fff; }
+.blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:48px; }
+.blog-card { border:1px solid var(--border-subtle); border-radius:var(--radius-lg); overflow:hidden; cursor:pointer; transition:box-shadow 200ms, transform 200ms, border-color 200ms; background:#fff; }
+.blog-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:var(--border-default); }
+.blog-card-top { background:var(--plum-50); height:140px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border-subtle); position:relative; overflow:hidden; }
+.blog-card-icon { color:var(--plum-300); opacity:0.5; }
+.blog-card-body { padding:24px; }
+.blog-tag { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-600); margin-bottom:10px; }
+.blog-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:500; color:var(--text-primary); line-height:1.35; margin-bottom:12px; }
+.blog-meta { display:flex; align-items:center; gap:12px; font-size:12px; color:var(--text-tertiary); }
+.blog-meta-dot { width:3px; height:3px; background:var(--border-default); border-radius:50%; }
+.blog-read-link { font-size:13px; font-weight:500; color:var(--gold-600); display:flex; align-items:center; gap:4px; margin-top:16px; transition:color 150ms; }
+.blog-card:hover .blog-read-link { color:var(--gold-500); }
+
+/* Article page styles (shown when a card is clicked) */
+.article-view { display:none; }
+.article-view.active { display:block; }
+.listing-view { }
+.listing-view.hidden { display:none; }
+.article-back { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:var(--text-secondary); cursor:pointer; margin-bottom:40px; transition:color 150ms; }
+.article-back:hover { color:var(--text-primary); }
+.article-layout { display:grid; grid-template-columns:1fr 320px; gap:64px; align-items:start; }
+.article-body { }
+.article-tag { font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-600); margin-bottom:14px; }
+.article-title { font-family:'Playfair Display',serif; font-size:40px; font-weight:500; color:var(--text-primary); line-height:1.15; letter-spacing:-0.02em; margin-bottom:20px; }
+.article-meta { display:flex; align-items:center; gap:16px; font-size:13px; color:var(--text-tertiary); margin-bottom:36px; padding-bottom:24px; border-bottom:1px solid var(--border-subtle); }
+.article-content p { font-size:15.5px; color:var(--text-secondary); line-height:1.75; margin-bottom:20px; }
+.article-content h3 { font-size:20px; font-weight:600; color:var(--text-primary); margin:32px 0 12px; }
+.article-sidebar { position:sticky; top:88px; }
+.sidebar-cta { background:var(--plum-900); border-radius:var(--radius-lg); padding:28px; }
+.sidebar-cta-eyebrow { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-400); margin-bottom:10px; }
+.sidebar-cta-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:500; color:#fff; line-height:1.3; margin-bottom:12px; }
+.sidebar-cta-body { font-size:13px; color:rgba(255,255,255,0.45); line-height:1.6; margin-bottom:20px; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/logo.svg" height="28" alt="Fyndock"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html#services">Services</a>
+      <a class="nav-link" href="how-it-works.html">How It Works</a>
+      <a class="nav-link" href="services/mis-reports.html">MIS Reports</a>
+      <a class="nav-link" href="case-studies.html">Case Studies</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html"><button class="btn-ghost">Book a Call</button></a>
+      <a href="contact.html"><button class="btn-primary">Get Free Sample</button></a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="section-wrap">
+    <div class="hero-eyebrow">The Fyndock Blog</div>
+    <h1 class="page-title">Financial intelligence, explained.</h1>
+    <p class="page-sub">Practical guides for founders navigating finance, GST, fundraising, and the numbers that matter.</p>
+  </div>
+</section>
+
+<section class="blog-section">
+  <div class="section-wrap">
+
+    <!-- Listing view -->
+    <div class="listing-view" id="listingView">
+      <div class="blog-grid">
+
+        <div class="blog-card" onclick="showArticle(0)">
+          <div class="blog-card-top" style="background:var(--plum-50);">
+            <i data-lucide="file-bar-chart" class="blog-card-icon" style="width:48px;height:48px;"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-tag">MIS Reports</div>
+            <div class="blog-title">What is an MIS Report and why every startup founder needs one</div>
+            <div class="blog-meta">
+              <span>Fyndock Team</span><span class="blog-meta-dot"></span><span>12 Apr 2026</span><span class="blog-meta-dot"></span><span>6 min read</span>
+            </div>
+            <div class="blog-read-link">Read article <i data-lucide="arrow-right" style="width:12px;height:12px"></i></div>
+          </div>
+        </div>
+
+        <div class="blog-card" onclick="showArticle(1)">
+          <div class="blog-card-top" style="background:var(--gold-50);">
+            <i data-lucide="book-open" class="blog-card-icon" style="width:48px;height:48px;color:var(--gold-300);"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-tag">Financial Literacy</div>
+            <div class="blog-title">How to read your CA's trial balance like a CFO</div>
+            <div class="blog-meta">
+              <span>Utsav Manhas</span><span class="blog-meta-dot"></span><span>5 Apr 2026</span><span class="blog-meta-dot"></span><span>8 min read</span>
+            </div>
+            <div class="blog-read-link">Read article <i data-lucide="arrow-right" style="width:12px;height:12px"></i></div>
+          </div>
+        </div>
+
+        <div class="blog-card" onclick="showArticle(2)">
+          <div class="blog-card-top" style="background:#f0f7f3;">
+            <i data-lucide="trending-up" class="blog-card-icon" style="width:48px;height:48px;color:#c3ddd0;"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-tag">Fundraising</div>
+            <div class="blog-title">8 financial metrics every Series A startup board wants to see</div>
+            <div class="blog-meta">
+              <span>Utsav Manhas</span><span class="blog-meta-dot"></span><span>28 Mar 2026</span><span class="blog-meta-dot"></span><span>7 min read</span>
+            </div>
+            <div class="blog-read-link">Read article <i data-lucide="arrow-right" style="width:12px;height:12px"></i></div>
+          </div>
+        </div>
+
+        <div class="blog-card" onclick="showArticle(3)">
+          <div class="blog-card-top" style="background:var(--plum-50);">
+            <i data-lucide="shield-check" class="blog-card-icon" style="width:48px;height:48px;"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-tag">GST & Compliance</div>
+            <div class="blog-title">GSTR-2B vs ITC Ledger: A reconciliation guide for founders</div>
+            <div class="blog-meta">
+              <span>S.P. Manhas</span><span class="blog-meta-dot"></span><span>20 Mar 2026</span><span class="blog-meta-dot"></span><span>9 min read</span>
+            </div>
+            <div class="blog-read-link">Read article <i data-lucide="arrow-right" style="width:12px;height:12px"></i></div>
+          </div>
+        </div>
+
+        <div class="blog-card" onclick="showArticle(4)">
+          <div class="blog-card-top" style="background:var(--gold-50);">
+            <i data-lucide="users" class="blog-card-icon" style="width:48px;height:48px;color:var(--gold-300);"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-tag">Virtual CFO</div>
+            <div class="blog-title">When should a startup hire a Virtual CFO? (Framework)</div>
+            <div class="blog-meta">
+              <span>Fyndock Team</span><span class="blog-meta-dot"></span><span>12 Mar 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
+            </div>
+            <div class="blog-read-link">Read article <i data-lucide="arrow-right" style="width:12px;height:12px"></i></div>
+          </div>
+        </div>
+
+        <div class="blog-card" onclick="showArticle(5)">
+          <div class="blog-card-top" style="background:#f0f7f3;">
+            <i data-lucide="target" class="blog-card-icon" style="width:48px;height:48px;color:#c3ddd0;"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-tag">Unit Economics</div>
+            <div class="blog-title">Unit economics explained: CAC, LTV, and why they matter more than revenue</div>
+            <div class="blog-meta">
+              <span>Utsav Manhas</span><span class="blog-meta-dot"></span><span>4 Mar 2026</span><span class="blog-meta-dot"></span><span>10 min read</span>
+            </div>
+            <div class="blog-read-link">Read article <i data-lucide="arrow-right" style="width:12px;height:12px"></i></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Article view -->
+    <div class="article-view" id="articleView">
+      <div class="article-back" onclick="showListing()">
+        <i data-lucide="arrow-left" style="width:14px;height:14px"></i> Back to all articles
+      </div>
+      <div class="article-layout">
+        <div class="article-body">
+          <div class="article-tag" id="artTag"></div>
+          <h1 class="article-title" id="artTitle"></h1>
+          <div class="article-meta">
+            <span id="artAuthor"></span>
+            <span>·</span>
+            <span id="artDate"></span>
+            <span>·</span>
+            <span id="artRead"></span>
+          </div>
+          <div class="article-content" id="artContent"></div>
+        </div>
+        <div class="article-sidebar">
+          <div class="sidebar-cta">
+            <div class="sidebar-cta-eyebrow">Free MIS Report</div>
+            <div class="sidebar-cta-title">See what your numbers really say.</div>
+            <div class="sidebar-cta-body">Send us your trial balance. We'll return a full Fyndock MIS sample within 48 hours. No commitment.</div>
+            <a href="contact.html"><button style="width:100%;background:var(--gold-500);color:var(--plum-900);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:12px;border-radius:var(--radius-md);border:none;cursor:pointer;">Get Your Free Report</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <img src="assets/logo-light.svg" height="28" alt="Fyndock">
+      <p class="footer-tagline">CFO-grade financial intelligence for growth-stage companies.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services/mis-reports.html">MIS Reports</a>
+        <a href="services/virtual-cfo.html">Virtual CFO</a>
+        <a href="contact.html">FP&A Advisory</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Fyndock. A Fyndock Financial Intelligence Company.</span>
+  </div>
+</footer>
+<script>
+lucide.createIcons();
+
+const articles = [
+  { tag:'MIS Reports', title:'What is an MIS Report and why every startup founder needs one', author:'Fyndock Team', date:'12 Apr 2026', read:'6 min read', content:`<p>Most Indian startup founders receive one financial document from their accountant each month: a trial balance. It's a raw list of debit and credit balances across every account in their books. Technically complete. Practically useless for running a business.</p><h3>What an MIS Report actually is</h3><p>MIS stands for Management Information System. In a financial context, it's the structured, interpreted layer that sits on top of your raw accounting data. A well-built MIS report answers the questions a founder actually has: Are we profitable this month? Where is our cash going? How long does our runway last at current burn? Which channels or products are actually making money?</p><h3>The problem with trial balances</h3><p>A trial balance tells you that ₹14.2L went out under "Operating Expenses" last month. An MIS report tells you that ₹6.8L of that was marketing spend with an ROAS of 1.4x, ₹4.1L was payroll that grew 18% month-on-month, and ₹3.3L was a one-off vendor advance that will reverse next month. Those are three completely different conversations with your board.</p><h3>What a Fyndock MIS includes</h3><p>Our standard MIS workbook has 8 sheets — from an executive summary dashboard through to a red-flag action tracker. Every sheet is reconciled to your trial balance, validated by a CA, and accompanied by a written CFO narrative. It's not just numbers. It's the story the numbers are telling.</p><p>If you've never seen a structured MIS report for your business, <a href="contact.html" style="color:var(--gold-600)">request a free sample</a> — we'll build one from your trial balance so you can see exactly what you've been missing.</p>` },
+  { tag:'Financial Literacy', title:'How to read your CA\'s trial balance like a CFO', author:'Utsav Manhas', date:'5 Apr 2026', read:'8 min read', content:`<p>The trial balance is the starting point of every financial conversation — but very few founders know how to read one. Here's a practical guide to extracting insight from raw accounting data.</p><h3>The structure of a trial balance</h3><p>A trial balance has two columns: debits and credits. Every account in your company's books appears here — from bank balances to vendor payables, from revenue accounts to salary expenses. The total of debits must equal the total of credits. That's the only check it performs.</p><h3>What to look for first</h3><p>Start with the balance sheet accounts — cash, receivables, payables. These tell you where you stand right now. Then look at the P&L accounts — revenue and expense lines. The ratio of total expenses to total revenue gives you a rough sense of whether you're profitable this period.</p><h3>The translation problem</h3><p>The challenge is that trial balance account names are set up for accounting convenience, not management clarity. "Indirect Expenses" might contain everything from software subscriptions to office rent to a one-off legal fee. Without restructuring and categorising those accounts, you can't see your cost structure clearly. That restructuring is exactly what an MIS report does.</p>` },
+  { tag:'Fundraising', title:'8 financial metrics every Series A startup board wants to see', author:'Utsav Manhas', date:'28 Mar 2026', read:'7 min read', content:`<p>Your Series A board has one question underneath every other question: is this business compounding? The 8 metrics below are the ones they'll use to answer it — make sure you know them cold before you walk into the room.</p><h3>1. Monthly Recurring Revenue (MRR) and growth rate</h3><p>For SaaS and subscription businesses, MRR is the foundation. But the growth rate matters more than the absolute number. Boards want to see consistent MoM growth — ideally 10–15% for early-stage, with a clear explanation for any deviation.</p><h3>2. Gross Margin</h3><p>Revenue is vanity; gross margin is where the business model shows up. Sub-30% gross margins are a structural concern. 60%+ is where SaaS businesses typically need to be. For D2C, contribution margin is the equivalent — and it must account for returns, logistics, and platform fees.</p><h3>3. Customer Acquisition Cost (CAC) and Payback Period</h3><p>How much does it cost to acquire one customer, and how many months of gross profit does it take to recover that cost? Boards get nervous when payback exceeds 18 months. Under 12 months is compelling.</p><h3>4. Net Revenue Retention (NRR)</h3><p>NRR above 100% means your existing customers are expanding faster than they're churning. For SaaS businesses at Series A, 110–120% NRR is exceptional. Below 90% is a red flag that needs explaining.</p><h3>5. Burn Rate and Cash Runway</h3><p>Monthly net cash outflow, and how many months of runway remain at current burn. Boards want at least 18 months of runway post-raise. If you're at 12 months or less, that's the first thing they'll ask about.</p><h3>6. EBITDA Margin trend</h3><p>Not the absolute EBITDA — the direction. Boards want to see the path to profitability, even if you're not there yet. EBITDA improving by 200–300 basis points per quarter shows operating leverage.</p><h3>7. Revenue concentration</h3><p>If your top 3 customers represent more than 40% of revenue, you have concentration risk. Boards will ask about it. Have a diversification plan ready.</p><h3>8. Headcount efficiency (Revenue per FTE)</h3><p>Total revenue divided by full-time equivalent headcount. A rising revenue-per-FTE ratio demonstrates that you're scaling efficiently. Flat or declining ratios suggest the team is growing faster than the business.</p>` },
+  { tag:'GST & Compliance', title:'GSTR-2B vs ITC Ledger: A reconciliation guide for founders', author:'S.P. Manhas', date:'20 Mar 2026', read:'9 min read', content:`<p>Input Tax Credit (ITC) reconciliation is one of the most misunderstood — and highest-risk — areas of GST compliance for Indian startups. Here's how to think about it.</p><h3>What is GSTR-2B?</h3><p>GSTR-2B is a system-generated ITC statement that the GST portal generates for each taxpayer. It reflects the invoices that your suppliers have uploaded in their GSTR-1 filings. It's effectively the government's view of what ITC you're eligible to claim.</p><h3>What is the ITC Ledger?</h3><p>Your ITC Ledger (also called the Electronic Credit Ledger) shows the ITC that you've actually claimed in your GSTR-3B returns. It's your company's record of credits taken.</p><h3>Why they don't match</h3><p>The most common reasons for mismatches: a supplier hasn't filed their GSTR-1 yet; a supplier has filed with an incorrect invoice number or amount; you've claimed ITC on an invoice that's ineligible (e.g., personal use items, blocked credits under Section 17(5)); or there are reverse charge mechanism (RCM) transactions that require self-invoicing.</p><h3>The risk of not reconciling</h3><p>Under CGST Rule 36(4), you can only claim ITC up to the amount available in GSTR-2B. Excess claims can trigger a GST demand notice. We've seen VC funds and growth-stage companies with unreconciled mismatches running into lakhs of rupees of exposure — often sitting undetected for multiple quarters.</p><h3>How to reconcile</h3><p>Match every line in your GSTR-2B against your books. For missing invoices, follow up with vendors. For RCM transactions, ensure self-invoices are raised. Build a monthly reconciliation as a standard process — not a quarterly scramble before filing.</p>` },
+  { tag:'Virtual CFO', title:'When should a startup hire a Virtual CFO? (Framework)', author:'Fyndock Team', date:'12 Mar 2026', read:'5 min read', content:`<p>The question isn't whether your startup needs CFO-level financial thinking. It does. The question is when — and in what form.</p><h3>The three stages of startup finance</h3><p>Stage 1 (pre-Seed to Seed): A good CA handles bookkeeping and compliance. That's sufficient. Stage 2 (Seed to Series A): You've raised capital, you have investors, and your board is asking questions your CA can't answer. This is when a Virtual CFO starts paying for itself. Stage 3 (Series A+): You're likely building an in-house finance team. A full-time CFO makes sense at ₹20Cr+ revenue or when you have a complex capital structure.</p><h3>The signals that tell you it's time</h3><p>You're preparing for a fundraise and don't have a 3-statement model. Your board asks about unit economics and you can't answer with data. You're making pricing or hiring decisions without a financial model. Your burn rate has increased but you're not sure why. You've started missing compliance deadlines.</p><h3>What a Virtual CFO actually costs vs a full-time hire</h3><p>A full-time CFO in India at a funded startup typically costs ₹40–60L per year in total compensation, plus equity. A Virtual CFO engagement starts at ₹25,000/month — ₹3L/year — and provides the equivalent strategic output for a company at the Seed-to-Series A stage. The maths is clear.</p>` },
+  { tag:'Unit Economics', title:'Unit economics explained: CAC, LTV, and why they matter more than revenue', author:'Utsav Manhas', date:'4 Mar 2026', read:'10 min read', content:`<p>Revenue is the metric everyone talks about. Unit economics is the metric that determines whether a business is actually worth building. Here's the framework you need.</p><h3>What is a "unit" in unit economics?</h3><p>A unit is whatever the fundamental building block of your business is. For SaaS, it's typically one customer or one contract. For D2C, it's one order or one customer. For EduTech, it might be one student enrolment or one batch. Once you define your unit, unit economics asks: does each unit make money?</p><h3>Customer Acquisition Cost (CAC)</h3><p>CAC is the total cost of acquiring one new customer. Total sales and marketing spend ÷ number of new customers acquired in the same period. The most common mistake: founders include only ad spend, not salesperson salaries, agency fees, and attribution tooling. Fully-loaded CAC is often 2–3x what founders initially calculate.</p><h3>Lifetime Value (LTV)</h3><p>LTV is the total gross profit you expect to generate from one customer over the duration of the relationship. For subscription businesses: (Average Revenue per User × Gross Margin %) ÷ Monthly Churn Rate. A healthy SaaS business has LTV:CAC of 3x or higher, with a payback period under 18 months.</p><h3>Contribution Margin — the D2C equivalent</h3><p>For D2C brands, LTV calculations can be misleading without accounting for returns, marketplace fees, and logistics. Contribution margin per order — net revenue after returns, minus direct COGS, minus platform fees, minus last-mile delivery — is the number that actually matters. We've seen brands with strong topline revenue and negative contribution margins on their highest-selling SKUs.</p><h3>Why unit economics matters more than revenue at the board level</h3><p>Revenue growth tells you the business is moving. Unit economics tells you whether it should be moving faster or slower. A business with great unit economics should be pushing the accelerator on customer acquisition. A business with poor unit economics that's growing revenue quickly is simply accelerating towards a larger problem.</p>` }
+];
+
+function showArticle(idx) {
+  const a = articles[idx];
+  document.getElementById('artTag').textContent = a.tag;
+  document.getElementById('artTitle').textContent = a.title;
+  document.getElementById('artAuthor').textContent = a.author;
+  document.getElementById('artDate').textContent = a.date;
+  document.getElementById('artRead').textContent = a.read;
+  document.getElementById('artContent').innerHTML = a.content;
+  document.getElementById('listingView').classList.add('hidden');
+  document.getElementById('articleView').classList.add('active');
+  window.scrollTo({top:0});
+  lucide.createIcons();
+}
+
+function showListing() {
+  document.getElementById('articleView').classList.remove('active');
+  document.getElementById('listingView').classList.remove('hidden');
+  window.scrollTo({top:0});
+}
+</script>
+</body>
+</html>
