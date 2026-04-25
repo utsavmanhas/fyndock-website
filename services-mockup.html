@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services Section — Mock-up Preview · Fyndock</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="shared.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* Standalone preview frame */
+body { background: var(--neutral-50); }
+.preview-frame { max-width: 1180px; margin: 40px auto; padding: 0 40px; }
+.preview-flag { display:inline-flex; align-items:center; gap:8px; background:var(--gold-100); border:1px solid var(--gold-300); padding:6px 14px; border-radius:var(--radius-full); font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-700); margin-bottom:32px; }
+.preview-note { font-size:13px; color:var(--text-secondary); margin-top:32px; padding-top:24px; border-top:1px dashed var(--border-default); line-height:1.7; max-width:760px; }
+
+/* ── Services Section v2 ─────────────────────────────────── */
+.services-v2 { padding:96px 0; background:#fff; border-radius:var(--radius-xl); border:1px solid var(--border-subtle); margin-bottom:48px; }
+.services-v2-header { display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:end; padding:0 48px; margin-bottom:56px; }
+.services-v2-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-600); margin-bottom:14px; }
+.services-v2-title { font-family:'Playfair Display',serif; font-size:42px; font-weight:500; line-height:1.15; letter-spacing:-0.025em; color:var(--text-primary); margin-bottom:14px; }
+.services-v2-sub { font-size:15px; color:var(--text-secondary); line-height:1.65; max-width:520px; }
+.services-v2-toggle { display:flex; align-items:center; gap:8px; padding:6px; border:1px solid var(--border-subtle); border-radius:var(--radius-full); background:var(--surface-app); width:fit-content; justify-self:end; }
+.services-v2-toggle button { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; padding:8px 18px; border:none; border-radius:var(--radius-full); background:transparent; color:var(--text-secondary); cursor:pointer; transition:all 150ms; }
+.services-v2-toggle button.active { background:#fff; color:var(--text-primary); box-shadow:var(--shadow-sm); }
+
+.services-v2-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; padding:0 48px; }
+.svc-v2-card { border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:0; background:#fff; position:relative; transition:all 200ms var(--ease-out); display:flex; flex-direction:column; overflow:hidden; }
+.svc-v2-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:var(--border-default); }
+.svc-v2-persona { padding:24px 28px 0; }
+.svc-v2-persona-label { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold-600); letter-spacing:0.08em; margin-bottom:8px; text-transform:uppercase; }
+.svc-v2-persona-name { font-size:14px; color:var(--text-secondary); font-style:italic; line-height:1.4; }
+.svc-v2-divider { height:1px; background:var(--border-subtle); margin:18px 28px 0; }
+.svc-v2-body { padding:24px 28px 0; }
+.svc-v2-name { font-family:'Playfair Display',serif; font-size:24px; font-weight:500; color:var(--text-primary); letter-spacing:-0.015em; margin-bottom:6px; }
+.svc-v2-desc { font-size:13.5px; color:var(--text-secondary); line-height:1.55; margin-bottom:22px; }
+.svc-v2-pricing { display:flex; align-items:baseline; gap:6px; margin-bottom:6px; }
+.svc-v2-from { font-size:11px; color:var(--text-tertiary); font-weight:500; letter-spacing:0.06em; text-transform:uppercase; }
+.svc-v2-price { font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:500; color:var(--text-primary); letter-spacing:-0.01em; }
+.svc-v2-price-suffix { font-size:13px; color:var(--text-tertiary); font-weight:400; margin-left:2px; }
+.svc-v2-pricing-note { font-size:12px; color:var(--text-tertiary); margin-bottom:24px; }
+.svc-v2-features { list-style:none; padding:0; margin:0 0 24px; display:flex; flex-direction:column; gap:9px; }
+.svc-v2-features li { font-size:13px; color:var(--text-secondary); display:flex; gap:10px; align-items:flex-start; line-height:1.45; }
+.svc-v2-features li i { width:14px; height:14px; flex-shrink:0; margin-top:3px; color:var(--gold-500); }
+
+/* Sample preview thumbnail inside card */
+.svc-v2-preview { background:linear-gradient(180deg, var(--plum-50) 0%, #fff 100%); padding:18px 28px 22px; border-top:1px solid var(--border-subtle); margin-top:auto; }
+.svc-v2-preview-label { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold-600); letter-spacing:0.08em; margin-bottom:10px; text-transform:uppercase; }
+.svc-v2-preview-thumbs { display:flex; gap:6px; margin-bottom:14px; }
+.thumb { flex:1; height:32px; background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:8px; color:var(--text-tertiary); padding:2px; transition:all 150ms; }
+.thumb:hover { border-color:var(--gold-400); color:var(--gold-700); }
+.thumb.active { border-color:var(--gold-500); background:var(--gold-100); color:var(--gold-700); font-weight:500; }
+.svc-v2-cta-row { display:flex; gap:8px; align-items:center; }
+.svc-v2-cta-primary { flex:1; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--plum-900); background:var(--gold-500); border:none; padding:11px 16px; border-radius:var(--radius-md); cursor:pointer; transition:background 150ms; display:inline-flex; align-items:center; justify-content:center; gap:6px; }
+.svc-v2-cta-primary:hover { background:var(--gold-400); }
+.svc-v2-cta-secondary { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; color:var(--text-secondary); background:transparent; border:1px solid var(--border-default); padding:11px 14px; border-radius:var(--radius-md); cursor:pointer; transition:all 150ms; }
+.svc-v2-cta-secondary:hover { border-color:var(--plum-300); color:var(--text-primary); }
+
+/* Featured (middle) card */
+.svc-v2-card.featured { background:var(--plum-900); border-color:var(--plum-700); color:#fff; }
+.svc-v2-card.featured .svc-v2-persona-name,
+.svc-v2-card.featured .svc-v2-desc,
+.svc-v2-card.featured .svc-v2-pricing-note,
+.svc-v2-card.featured .svc-v2-features li { color:rgba(255,255,255,0.6); }
+.svc-v2-card.featured .svc-v2-name,
+.svc-v2-card.featured .svc-v2-price { color:#fff; }
+.svc-v2-card.featured .svc-v2-from { color:rgba(255,255,255,0.4); }
+.svc-v2-card.featured .svc-v2-price-suffix { color:rgba(255,255,255,0.4); }
+.svc-v2-card.featured .svc-v2-features li i { color:var(--gold-400); }
+.svc-v2-card.featured .svc-v2-divider { background:rgba(255,255,255,0.1); }
+.svc-v2-card.featured .svc-v2-preview { background:linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%); border-top:1px solid rgba(255,255,255,0.1); }
+.svc-v2-card.featured .svc-v2-preview-label,
+.svc-v2-card.featured .svc-v2-persona-label { color:var(--gold-400); }
+.svc-v2-card.featured .thumb { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12); color:rgba(255,255,255,0.55); }
+.svc-v2-card.featured .thumb.active { background:rgba(196,163,90,0.15); border-color:var(--gold-400); color:var(--gold-300); }
+.svc-v2-card.featured .svc-v2-cta-secondary { color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.2); }
+.svc-v2-card.featured .svc-v2-cta-secondary:hover { color:#fff; border-color:rgba(255,255,255,0.4); }
+.svc-v2-card.featured .svc-v2-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--gold-500); color:var(--plum-900); font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:4px 14px; border-radius:var(--radius-full); white-space:nowrap; }
+
+/* Comparison Strip Below */
+.compare-strip { padding:0 48px 48px; }
+.compare-summary { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:0; border:1px solid var(--border-subtle); border-radius:var(--radius-lg); overflow:hidden; background:#fff; margin-top:32px; }
+.compare-summary > div { padding:18px 24px; border-right:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:4px; }
+.compare-summary > div:last-child { border-right:none; }
+.compare-summary > div:first-child { background:var(--surface-app); }
+.compare-label { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--gold-600); letter-spacing:0.08em; text-transform:uppercase; }
+.compare-value { font-size:14px; font-weight:500; color:var(--text-primary); }
+.compare-sub { font-size:12px; color:var(--text-tertiary); }
+
+/* Responsive */
+@media (max-width:900px){
+  .services-v2-grid { grid-template-columns:1fr; }
+  .services-v2-header { grid-template-columns:1fr; }
+  .compare-summary { grid-template-columns:1fr 1fr; }
+  .compare-summary > div:nth-child(2) { border-right:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="preview-frame">
+  <div class="preview-flag">
+    <i data-lucide="layout-template" style="width:12px;height:12px"></i>
+    Services Section · Redesign Mock-up
+  </div>
+
+  <!-- Services Section v2 -->
+  <section class="services-v2">
+    <div class="services-v2-header">
+      <div>
+        <div class="services-v2-eyebrow">What We Do</div>
+        <h2 class="services-v2-title">Three engagements, one finance team behind them.</h2>
+        <p class="services-v2-sub">Pick the level of involvement that matches where your business is today. Switch between tiers as you grow — same team, same numbers, no re-onboarding.</p>
+      </div>
+      <div class="services-v2-toggle" role="tablist">
+        <button class="active">Monthly</button>
+        <button>Quarterly</button>
+        <button>Annual</button>
+      </div>
+    </div>
+
+    <div class="services-v2-grid">
+      <!-- Card 1: MIS Reports -->
+      <div class="svc-v2-card">
+        <div class="svc-v2-persona">
+          <div class="svc-v2-persona-label">Best for</div>
+          <div class="svc-v2-persona-name">SMEs that have a CA filing returns but no one reading the numbers.</div>
+        </div>
+        <div class="svc-v2-divider"></div>
+        <div class="svc-v2-body">
+          <div class="svc-v2-name">MIS Reports</div>
+          <div class="svc-v2-desc">From your raw Tally or Zoho trial balance to a board-ready 8-sheet Excel workbook — every month, in 24 hours.</div>
+          <div class="svc-v2-pricing">
+            <span class="svc-v2-from">From</span>
+            <span class="svc-v2-price">₹8,000<span class="svc-v2-price-suffix">/mo</span></span>
+          </div>
+          <div class="svc-v2-pricing-note">Scales with transaction volume &amp; complexity</div>
+          <ul class="svc-v2-features">
+            <li><i data-lucide="check"></i>8-sheet Excel workbook, auto-structured</li>
+            <li><i data-lucide="check"></i>P&amp;L · Balance Sheet · Cash Flow reconciled</li>
+            <li><i data-lucide="check"></i>Industry-specific KPI templates</li>
+            <li><i data-lucide="check"></i>Written CFO narrative each month</li>
+            <li><i data-lucide="check"></i>GST &amp; TDS reconciliation layer</li>
+          </ul>
+        </div>
+        <div class="svc-v2-preview">
+          <div class="svc-v2-preview-label">Preview the 8 sheets</div>
+          <div class="svc-v2-preview-thumbs">
+            <div class="thumb">Cover</div>
+            <div class="thumb active">Exec</div>
+            <div class="thumb">P&amp;L</div>
+            <div class="thumb">BS</div>
+            <div class="thumb">CF</div>
+            <div class="thumb">+3</div>
+          </div>
+          <div class="svc-v2-cta-row">
+            <button class="svc-v2-cta-primary" onclick="window.location.href='assets/Fyndock_Sample_MIS_Anonymised.xlsx'">Download Sample <i data-lucide="download" style="width:12px;height:12px"></i></button>
+            <button class="svc-v2-cta-secondary" onclick="window.location.href='services/mis-reports.html'">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Virtual CFO (Featured) -->
+      <div class="svc-v2-card featured">
+        <div class="svc-v2-badge">Most Popular</div>
+        <div class="svc-v2-persona">
+          <div class="svc-v2-persona-label">Best for</div>
+          <div class="svc-v2-persona-name">Founders raising or running a board — needing more than monthly numbers.</div>
+        </div>
+        <div class="svc-v2-divider"></div>
+        <div class="svc-v2-body">
+          <div class="svc-v2-name">Virtual CFO</div>
+          <div class="svc-v2-desc">A complete CFO function on retainer — board packs, forecasting, fundraising support, and investor reporting.</div>
+          <div class="svc-v2-pricing">
+            <span class="svc-v2-from">From</span>
+            <span class="svc-v2-price">₹25,000<span class="svc-v2-price-suffix">/mo</span></span>
+          </div>
+          <div class="svc-v2-pricing-note">Includes monthly MIS · scope-based</div>
+          <ul class="svc-v2-features">
+            <li><i data-lucide="check"></i>Monthly board-ready financial pack</li>
+            <li><i data-lucide="check"></i>13-week cash flow forecast &amp; runway</li>
+            <li><i data-lucide="check"></i>Fundraising financial support &amp; data room</li>
+            <li><i data-lucide="check"></i>Investor reporting (LP / VC format)</li>
+            <li><i data-lucide="check"></i>ESOP structuring &amp; banking liaison</li>
+          </ul>
+        </div>
+        <div class="svc-v2-preview">
+          <div class="svc-v2-preview-label">A typical month includes</div>
+          <div class="svc-v2-preview-thumbs">
+            <div class="thumb">MIS</div>
+            <div class="thumb">Forecast</div>
+            <div class="thumb active">Board Pack</div>
+            <div class="thumb">Investor Q&amp;A</div>
+          </div>
+          <div class="svc-v2-cta-row">
+            <button class="svc-v2-cta-primary" onclick="window.location.href='services/virtual-cfo.html'">See What&rsquo;s Inside <i data-lucide="arrow-right" style="width:12px;height:12px"></i></button>
+            <button class="svc-v2-cta-secondary" onclick="window.location.href='contact.html'">Talk</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: FP&A Advisory -->
+      <div class="svc-v2-card">
+        <div class="svc-v2-persona">
+          <div class="svc-v2-persona-label">Best for</div>
+          <div class="svc-v2-persona-name">One-off projects — a model for the next raise, a unit-economics rebuild.</div>
+        </div>
+        <div class="svc-v2-divider"></div>
+        <div class="svc-v2-body">
+          <div class="svc-v2-name">FP&amp;A Advisory</div>
+          <div class="svc-v2-desc">Project-based work — unit economics, scenario planning, and investor-grade financial models for your next conversation.</div>
+          <div class="svc-v2-pricing">
+            <span class="svc-v2-from">From</span>
+            <span class="svc-v2-price">₹50,000<span class="svc-v2-price-suffix">/project</span></span>
+          </div>
+          <div class="svc-v2-pricing-note">Typical engagement: ₹50K – ₹2L</div>
+          <ul class="svc-v2-features">
+            <li><i data-lucide="check"></i>3-statement financial model</li>
+            <li><i data-lucide="check"></i>Unit economics: CAC, LTV, contribution</li>
+            <li><i data-lucide="check"></i>Department-level P&amp;L</li>
+            <li><i data-lucide="check"></i>Scenario &amp; sensitivity planning</li>
+            <li><i data-lucide="check"></i>Pitch deck financials &amp; investor Q&amp;A</li>
+          </ul>
+        </div>
+        <div class="svc-v2-preview">
+          <div class="svc-v2-preview-label">Recent engagement types</div>
+          <div class="svc-v2-preview-thumbs">
+            <div class="thumb active">Series A model</div>
+            <div class="thumb">Unit econ rebuild</div>
+            <div class="thumb">Scenario plan</div>
+          </div>
+          <div class="svc-v2-cta-row">
+            <button class="svc-v2-cta-primary" onclick="window.location.href='contact.html'">Discuss Scope <i data-lucide="arrow-right" style="width:12px;height:12px"></i></button>
+            <button class="svc-v2-cta-secondary" onclick="window.location.href='contact.html'">Quote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare-strip">
+      <div class="compare-summary">
+        <div>
+          <span class="compare-label">All tiers include</span>
+          <span class="compare-value">CA review on every output</span>
+        </div>
+        <div>
+          <span class="compare-label">Onboarding</span>
+          <span class="compare-value">24–48 hours</span>
+          <span class="compare-sub">From TB submission to first deliverable</span>
+        </div>
+        <div>
+          <span class="compare-label">Switching tiers</span>
+          <span class="compare-value">Same team, no re-onboarding</span>
+        </div>
+        <div>
+          <span class="compare-label">Cancel anytime</span>
+          <span class="compare-value">Monthly notice</span>
+          <span class="compare-sub">No annual lock-ins</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-note"><strong>About this mock-up.</strong> This is a redesign of the Services section as it could appear in a future iteration of the home page. Five changes vs. the current version: (1) added a "Best for" persona line above each card so visitors can self-select faster; (2) replaced "Starting price" with "From ₹X" — feels less hedged; (3) added a small sample-preview thumb strip inside each card so the deliverable is visible without scrolling to the Deliverables Preview section; (4) introduced a comparison strip below the cards showing what's common across tiers (CA review, 24–48h onboarding, no lock-in); (5) added a top-right toggle (Monthly / Quarterly / Annual) as visual scaffolding for future annual-billing pricing. All design tokens, typography, and hover behaviour match the existing system. Use this file as a Vercel preview deployment to A/B against the current services grid before deciding whether to roll it in.</p>
+</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
