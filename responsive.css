@@ -93,6 +93,16 @@ img, svg, video, canvas { max-width: 100%; height: auto; }
   .proof-bar { gap: 16px; }
   .proof-item { font-size: 12px; }
 
+  /* ── Defensive: let grid/flex children shrink below content ── */
+  .hero-inner > * { min-width: 0; max-width: 100%; }
+  .mis-mock { min-width: 0; max-width: 100%; }
+  .excel-window { width: 100%; max-width: 100%; }
+  .excel-formulabar { min-width: 0; overflow: hidden; }
+  .excel-formulabar .formula-text { min-width: 0; flex: 1 1 0; }
+  .excel-titlebar { min-width: 0; }
+  .excel-titlebar span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .excel-ribbon { min-width: 0; flex-wrap: nowrap; overflow: hidden; }
+
   /* ── Excel MIS mock — fit narrow screens ─────────────────── */
   .mis-mock { padding-bottom: 8px; }
   .excel-window { font-size: 90%; }
