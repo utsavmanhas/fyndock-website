@@ -1,0 +1,230 @@
+/* ── Fyndock Site — Responsive Overrides ─────────────────────
+   Three breakpoints:
+     • 1024px (tablet): collapse 4-col → 2-col, ease padding
+     • 768px (phone): stack hero, all grids → 1 col, mobile nav
+     • 480px (small phone): tighten everything further
+   Loaded after colors_and_type.css and shared.css so it wins.
+─────────────────────────────────────────────────────────────── */
+
+/* Defensive: stop horizontal overflow site-wide */
+html, body { overflow-x: hidden; }
+img, svg, video, canvas { max-width: 100%; height: auto; }
+
+
+/* ════════════════════════════════════════════════════════════
+   TABLET — up to 1024px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+  /* Container padding */
+  .nav-inner,
+  .section-wrap,
+  .footer-top,
+  .footer-bottom,
+  .cta-banner-inner { padding-left: 28px; padding-right: 28px; }
+
+  /* Hero — keep two-column but reduce spacing */
+  .hero-inner { gap: 36px; padding: 0 28px; }
+  .hero-title { font-size: 44px; }
+  .hero-sub { font-size: 16px; }
+
+  /* Sections — gentler vertical rhythm */
+  .problem-section,
+  .services-section,
+  .hiw-section,
+  .preview-section,
+  .industries-section,
+  .cred-section { padding: 72px 0; }
+  .cta-banner { padding: 64px 0; }
+  .problem-header { margin-bottom: 44px; }
+  .services-header { margin-bottom: 40px; }
+
+  /* 4-column grids → 2 columns */
+  .industries-grid,
+  .preview-grid,
+  .cred-stats { grid-template-columns: repeat(2, 1fr); }
+
+  /* Preview header — stack two-column intro */
+  .preview-header { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+
+  /* Section titles slightly smaller */
+  .section-title,
+  .problem-title,
+  .cta-banner h2 { font-size: 36px; }
+
+  /* Cred numbers */
+  .cred-num { font-size: 44px; }
+  .cred-num sup { font-size: 22px; }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   PHONE — up to 768px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Container padding tighter */
+  .nav-inner,
+  .section-wrap,
+  .footer-top,
+  .footer-bottom,
+  .cta-banner-inner { padding-left: 20px; padding-right: 20px; }
+
+  /* Nav: hide desktop links, keep logo + CTA only */
+  .nav-links { display: none; }
+  .nav-inner { height: 60px; }
+  .btn-primary { font-size: 13px; padding: 8px 14px; }
+
+  /* ── Hero stacks ─────────────────────────────────────────── */
+  .hero { padding: 56px 0 0; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 0 20px;
+  }
+  .hero-title { font-size: 34px; line-height: 1.12; margin-bottom: 16px; }
+  .hero-title br { display: none; }
+  .hero-sub { font-size: 15px; margin-bottom: 26px; max-width: 100%; }
+  .hero-eyebrow { font-size: 10px; margin-bottom: 16px; }
+  .hero-actions { flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+  .hero-actions a { width: 100%; }
+  .hero-actions .btn-lg-primary,
+  .hero-actions .btn-lg-ghost { width: 100%; justify-content: center; padding: 12px 20px; font-size: 14px; }
+  .proof-bar { gap: 16px; }
+  .proof-item { font-size: 12px; }
+
+  /* ── Excel MIS mock — fit narrow screens ─────────────────── */
+  .mis-mock { padding-bottom: 8px; }
+  .excel-window { font-size: 90%; }
+  .excel-titlebar span { font-size: 10px; }
+  .excel-ribbon { gap: 12px; padding: 2px 6px 4px; }
+  .ribbon-tab { font-size: 10px; padding: 3px 6px; }
+  .excel-formulabar { padding: 3px 6px; gap: 6px; }
+  .formula-cell { width: 36px; font-size: 10px; padding-right: 6px; }
+  .formula-text { font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* Replace the fixed pixel column-headers grid with a fluid one */
+  .excel-colheaders { grid-template-columns: 28px repeat(5, 1fr); }
+  /* KPI tiles — keep 3 across but compact */
+  .kpi-row { grid-template-columns: 1fr 1fr 1fr; gap: 3px; padding: 6px; }
+  .kpi-cell { padding: 5px 6px; }
+  .kpi-label { font-size: 7.5px; }
+  .kpi-val { font-size: 13px; }
+  .kpi-delta { font-size: 8px; }
+  /* Chart */
+  .chart-bars { height: 48px; }
+  /* Sheet tabs scroll instead of overflow */
+  .excel-sheets { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-left: 28px; }
+  .excel-sheets::-webkit-scrollbar { height: 3px; }
+  .excel-sheets::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+  .sheet-tab { font-size: 9.5px; padding: 5px 10px; }
+
+  /* Marquee — slightly smaller, faster */
+  .marquee-item { font-size: 11px; padding: 0 18px; }
+
+  /* Sections — collapse all multi-col grids */
+  .problem-section,
+  .services-section,
+  .hiw-section,
+  .preview-section,
+  .industries-section,
+  .cred-section { padding: 56px 0; }
+  .cta-banner { padding: 48px 0; }
+  .problem-grid,
+  .services-grid,
+  .hiw-steps,
+  .industries-grid,
+  .preview-grid,
+  .cred-stats { grid-template-columns: 1fr; gap: 16px; }
+  .cred-stats { gap: 24px; margin-bottom: 40px; }
+
+  /* How It Works — kill the connector line on mobile */
+  .hiw-steps::before { display: none; }
+  .hiw-steps { gap: 32px; margin-top: 36px; }
+
+  /* Card padding */
+  .problem-card,
+  .svc-card { padding: 26px 22px; }
+  .preview-tile,
+  .industry-tile { padding: 20px 18px; }
+
+  /* Featured services card — keep visually distinct without scaling */
+  .svc-card.featured { transform: none; order: -1; }
+
+  /* Section titles */
+  .section-title,
+  .problem-title,
+  .cta-banner h2 { font-size: 28px; line-height: 1.2; }
+  .section-body { font-size: 14px; }
+  .problem-q { font-size: 16px; }
+  .problem-q-sub { font-size: 12px; }
+  .problem-fix { font-size: 13px; }
+
+  /* Cred section */
+  .cred-num { font-size: 38px; }
+  .cred-num sup { font-size: 18px; }
+  .cred-callout { padding: 22px 24px; }
+  .cred-callout p { font-size: 18px; }
+  .cred-body p { font-size: 14px; }
+
+  /* CTA banner */
+  .cta-banner h2 { font-size: 26px; }
+  .cta-banner p { font-size: 14px; }
+  .cta-banner-btn { font-size: 14px; padding: 12px 24px; }
+
+  /* Footer — stack columns */
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-bottom: 32px;
+    padding-top: 0;
+  }
+  .footer-links { flex-direction: column; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 8px; align-items: flex-start; padding-top: 16px; }
+  .site-footer { padding: 48px 0 24px; }
+
+  /* Tweaks panel — hide on small screens (it's a dev tool) */
+  #tweaks-panel { display: none !important; }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   SMALL PHONE — up to 480px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  .nav-inner,
+  .section-wrap,
+  .footer-top,
+  .footer-bottom,
+  .cta-banner-inner { padding-left: 16px; padding-right: 16px; }
+  .hero-inner { padding: 0 16px; }
+
+  /* Hero — squeeze further */
+  .hero-title { font-size: 28px; }
+  .hero-sub { font-size: 14px; }
+
+  /* Excel mock — KPI tiles stack on tiny phones */
+  .kpi-row { grid-template-columns: 1fr; }
+  .kpi-val { font-size: 14px; }
+  .narrative-text { font-size: 8.5px; }
+  .redflag-text { font-size: 8px; }
+
+  /* Section titles smaller */
+  .section-title,
+  .problem-title,
+  .cta-banner h2 { font-size: 24px; }
+
+  /* Sections — even tighter */
+  .problem-section,
+  .services-section,
+  .hiw-section,
+  .preview-section,
+  .industries-section,
+  .cred-section { padding: 44px 0; }
+  .cta-banner { padding: 40px 0; }
+
+  /* Cred numbers */
+  .cred-num { font-size: 32px; }
+  .cred-num sup { font-size: 16px; }
+  .cred-callout p { font-size: 16px; }
+}

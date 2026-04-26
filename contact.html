@@ -6,6 +6,7 @@
 <title>Contact — Fyndock</title>
 <link rel="stylesheet" href="colors_and_type.css">
 <link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="responsive.css">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
 <meta name="description" content="Request a free Fyndock MIS sample report or book a Virtual CFO discovery call. We respond within 4 business hours. No commitment required.">
@@ -208,103 +209,4 @@
             </div>
           </div>
           <button type="submit" class="form-submit" id="formSubmitBtn">Send My Enquiry <i data-lucide="arrow-right" style="width:14px;height:14px"></i></button>
-          <div class="form-error" id="formError" style="display:none;margin-top:14px;padding:12px 14px;background:#fff0f3;border:1px solid #f5c2ce;border-radius:6px;color:#7a1530;font-size:13px;line-height:1.5;"></div>
-          <div class="form-note">Your information is kept strictly confidential. We do not share data with third parties.</div>
-        </form>
-
-        <div class="success-state" id="successState">
-          <div class="success-icon"><i data-lucide="check" style="width:24px;height:24px"></i></div>
-          <div class="success-title">Enquiry received.</div>
-          <div class="success-body">Thank you — we'll be in touch within 4 business hours.<br>In the meantime, feel free to explore our <a href="services/mis-reports.html" style="color:var(--gold-600)">MIS Reports</a> or <a href="case-studies.html" style="color:var(--gold-600)">Case Studies</a>.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="footer-top">
-    <div>
-      <img src="assets/logo-light.svg" height="28" alt="Fyndock">
-      <p class="footer-tagline">CFO-grade financial intelligence for growth-stage companies.</p>
-    </div>
-    <div class="footer-links">
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="services/mis-reports.html">MIS Reports</a>
-        <a href="services/virtual-cfo.html">Virtual CFO</a>
-        <a href="contact.html">FP&A Advisory</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="about.html">About</a>
-        <a href="case-studies.html">Case Studies</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:hello@fyndock.com">hello@fyndock.com</a>
-        <a href="tel:+919810679800">+91 98106 79800</a>
-        <span style="font-size:13px;color:rgba(255,255,255,0.42);display:block;margin-bottom:10px;">Dwarka, New Delhi 110078</span>
-        <span style="font-size:13px;color:rgba(255,255,255,0.42);display:block;margin-bottom:10px;">Janakpuri, New Delhi 110058</span>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Fyndock. A Fyndock Financial Intelligence Company.</span>
-  </div>
-</footer>
-
-<script>
-lucide.createIcons();
-
-async function handleSubmit(e) {
-  e.preventDefault();
-  const form = document.getElementById('contactForm');
-  const errorBox = document.getElementById('formError');
-  const submitBtn = document.getElementById('formSubmitBtn');
-  errorBox.style.display = 'none';
-
-  // Disable button + show "Sending…" state so user knows it's working
-  const originalBtnHTML = submitBtn.innerHTML;
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = 'Sending…';
-
-  try {
-    const formData = new FormData(form);
-    // Build a clean JSON object so Web3Forms shows nicely-named fields in the email
-    const payload = Object.fromEntries(formData.entries());
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const data = await response.json();
-
-    if (data.success) {
-      form.style.display = 'none';
-      const success = document.getElementById('successState');
-      success.style.display = 'block';
-      lucide.createIcons();
-      // Scroll the success message into view (helpful on mobile)
-      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } else {
-      throw new Error(data.message || 'Submission failed.');
-    }
-  } catch (err) {
-    errorBox.innerHTML =
-      "Sorry — your enquiry didn't go through. Please email us directly at " +
-      "<a href='mailto:smanhas@spmanhas.com' style='color:#7a1530;text-decoration:underline'>smanhas@spmanhas.com</a> " +
-      "or call <a href='tel:+919810679800' style='color:#7a1530;text-decoration:underline'>+91 98106 79800</a>.";
-    errorBox.style.display = 'block';
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalBtnHTML;
-    lucide.createIcons();
-  }
-}
-</script>
-</body>
-</html>
+          <div cla

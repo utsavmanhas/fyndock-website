@@ -6,6 +6,7 @@
 <title>MIS Reports — Fyndock</title>
 <link rel="stylesheet" href="../colors_and_type.css">
 <link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="../responsive.css">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
 <meta name="description" content="Turn your trial balance into an 8-sheet board-ready MIS workbook — CA-verified, with KPI dashboards and a written CFO narrative. From ₹8,000/month.">
@@ -254,49 +255,3 @@
         <ul class="price-features">
           <li>Multi-entity consolidation</li>
           <li>Department-level P&L</li>
-          <li>Board pack preparation</li>
-          <li>Dedicated CA + analyst team</li>
-          <li>Tally / Zoho / Odoo integration</li>
-          <li>Investor data room support</li>
-        </ul>
-        <a href="../contact.html"><button class="btn-lg-outline" style="width:100%">Talk to Us</button></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="footer-top">
-    <div>
-      <img src="../assets/logo-light.svg" height="28" alt="Fyndock">
-      <p class="footer-tagline">CFO-grade financial intelligence for growth-stage companies.</p>
-    </div>
-    <div class="footer-links">
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="mis-reports.html">MIS Reports</a>
-        <a href="virtual-cfo.html">Virtual CFO</a>
-        <a href="../contact.html">FP&A Advisory</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="../about.html">About</a>
-        <a href="../case-studies.html">Case Studies</a>
-        <a href="../contact.html">Contact</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Fyndock. A Fyndock Financial Intelligence Company.</span>
-  </div>
-</footer>
-<script>
-lucide.createIcons();
-function showSheet(idx, el) {
-  document.querySelectorAll('.sheet-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
-  document.querySelectorAll('.sheet-nav-item').forEach(n => n.classList.remove('active'));
-  el.classList.add('active');
-}
-</script>
-</body>
-</html>
