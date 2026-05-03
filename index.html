@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2032%2032%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%225%22%20fill%3D%22%23110B1C%22%2F%3E%3Cline%20x1%3D%228%22%20y1%3D%2227%22%20x2%3D%2216%22%20y2%3D%227%22%20stroke%3D%22%23C4A35A%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cline%20x1%3D%2216%22%20y1%3D%227%22%20x2%3D%2224%22%20y2%3D%2227%22%20stroke%3D%22%23C4A35A%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cline%20x1%3D%2211%22%20y1%3D%2219%22%20x2%3D%2221%22%20y2%3D%2219%22%20stroke%3D%22%23C4A35A%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.75%22%2F%3E%3C%2Fsvg%3E">
 <title>Auren: Your business is moving. Your finance function should keep up.</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -27,7 +28,7 @@ body{font-family:var(--font-body);background:var(--plum-950);color:#fff;-webkit-
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(17,11,28,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
-.nav-logo{height:36px}
+.nav-logo{height:48px}
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-link{font-size:13px;color:rgba(255,255,255,0.45);cursor:pointer;transition:color 160ms;text-decoration:none}
 .nav-link:hover{color:rgba(255,255,255,0.85)}
@@ -318,7 +319,12 @@ footer{background:var(--plum-950);padding:36px 48px;display:flex;align-items:cen
 
 <!-- NAV -->
 <nav>
-  <img src="assets/logo-auren-light.svg" class="nav-logo" alt="Auren">
+  <svg class="nav-logo" viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Auren">
+    <line x1="10" y1="40" x2="24" y2="8" stroke="#C4A35A" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="24" y1="8" x2="38" y2="40" stroke="#C4A35A" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="15" y1="27" x2="33" y2="27" stroke="#C4A35A" stroke-width="1.4" stroke-linecap="round" opacity="0.72"/>
+    <text x="52" y="34" font-family="'Playfair Display',Georgia,serif" font-size="26" fill="white" letter-spacing="1.5" font-weight="400">auren</text>
+  </svg>
   <div class="nav-links">
     <a href="#gap" class="nav-link">The problem</a>
     <a href="#finance-pack" class="nav-link">Finance pack</a>
@@ -946,7 +952,12 @@ footer{background:var(--plum-950);padding:36px 48px;display:flex;align-items:cen
 </section>
 
 <footer>
-  <img src="assets/logo-auren-light.svg" height="32" alt="Auren">
+  <svg viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg" height="32" aria-label="Auren">
+    <line x1="10" y1="40" x2="24" y2="8" stroke="#C4A35A" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="24" y1="8" x2="38" y2="40" stroke="#C4A35A" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="15" y1="27" x2="33" y2="27" stroke="#C4A35A" stroke-width="1.4" stroke-linecap="round" opacity="0.72"/>
+    <text x="52" y="34" font-family="'Playfair Display',Georgia,serif" font-size="26" fill="white" letter-spacing="1.5" font-weight="400">auren</text>
+  </svg>
   <div class="footer-copy">2026 Auren. Modern finance desk for startups and SMEs. New Delhi, India.</div>
   <div class="footer-links">
     <a href="https://fyndock-website.vercel.app/" target="_blank">Live site</a>
