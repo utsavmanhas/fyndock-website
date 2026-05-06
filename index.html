@@ -312,6 +312,9 @@ footer{background:var(--plum-950);padding:36px 48px;display:flex;align-items:cen
   .section-wrap{padding:72px 20px}
 }
 @media(max-width:600px){
+  .contact-split{grid-template-columns:1fr;gap:40px}
+  .cf-grid{grid-template-columns:1fr}
+
   /* Hero */
   #hero{padding:80px 20px 56px;min-height:100svh}
   .hero-inner{grid-template-columns:1fr;gap:36px}
@@ -338,6 +341,27 @@ footer{background:var(--plum-950);padding:36px 48px;display:flex;align-items:cen
   #cta-scene p{text-align:center}
   #cta-scene .btn-gold,#cta-scene .btn-outline-light{display:block;width:100%;max-width:320px;margin:0 auto 12px;text-align:center;box-sizing:border-box}
 }
+
+/* ── Contact section ── */
+.contact-split{display:grid;grid-template-columns:1fr 1.5fr;gap:72px;align-items:start;max-width:1100px;margin:0 auto}
+.contact-lede{font-size:16px;color:rgba(255,255,255,0.42);line-height:1.75;margin:14px 0 32px}
+.contact-deet{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:14px}
+.contact-deet a{color:rgba(255,255,255,0.55);text-decoration:none;transition:color 150ms}
+.contact-deet a:hover{color:var(--gold-400)}
+.contact-deet-icon{color:var(--gold-500);width:16px;flex-shrink:0}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.cf-group{display:flex;flex-direction:column;gap:6px}
+.cf-group.full{grid-column:1/-1}
+.cf-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.cf-input,.cf-select,.cf-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:7px;padding:11px 14px;font-size:14px;color:#fff;font-family:var(--font-body);transition:border-color 150ms;box-sizing:border-box}
+.cf-input::placeholder,.cf-textarea::placeholder{color:rgba(255,255,255,0.22)}
+.cf-input:focus,.cf-select:focus,.cf-textarea:focus{outline:none;border-color:rgba(196,163,90,0.6)}
+.cf-select{appearance:none;cursor:pointer;color:rgba(255,255,255,0.45)}
+.cf-select option{background:#1a1228;color:#fff}
+.cf-textarea{resize:vertical;min-height:96px}
+.cf-submit{width:100%;background:var(--gold-500);color:var(--plum-900);font-family:var(--font-body);font-size:15px;font-weight:600;padding:13px 24px;border-radius:7px;border:none;cursor:pointer;transition:background 150ms;margin-top:6px}
+.cf-submit:hover{background:var(--gold-400)}
+.cf-success{display:none;text-align:center;padding:48px 24px;background:rgba(196,163,90,0.06);border:1px solid rgba(196,163,90,0.18);border-radius:12px}
 </style>
 </head>
 <body>
@@ -357,7 +381,8 @@ footer{background:var(--plum-950);padding:36px 48px;display:flex;align-items:cen
     <a href="#finance-pack" class="nav-link">Finance pack</a>
     <a href="#ai-engine" class="nav-link">How it works</a>
     <a href="#mis-preview" class="nav-link">Sample pack</a>
-    <a href="#clientele" class="nav-link">Clients</a>
+    <a href="#contact" class="nav-link">Contact</a>
+        <a href="#clientele" class="nav-link">Clients</a>
   </div>
   <a href="https://mis-report-generator.vercel.app/" class="nav-cta" target="_blank" style="font-size: 13px; font-weight: 700">Try MIS Generator</a>
 </nav>
@@ -900,6 +925,56 @@ footer{background:var(--plum-950);padding:36px 48px;display:flex;align-items:cen
 <!-- ██████████████████████████████████████████████████████████ -->
 <!-- SCENE 10: CTA  (mid)                                      -->
 <!-- ██████████████████████████████████████████████████████████ -->
+
+<section class="section-dark section-wrap" id="contact" data-screen-label="10 Contact">
+  <div class="section-inner reveal">
+    <div class="contact-split">
+      <div>
+        <div class="eyebrow eyebrow-gold">Get in touch</div>
+        <h2 class="section-title" style="color:#fff">Let's talk about<br>your numbers.</h2>
+        <p class="contact-lede">Tell us about your business. We'll show you exactly what Auren would look like for you — no commitment needed.</p>
+        <div class="contact-deet"><span class="contact-deet-icon">✉</span><a href="mailto:hello@fyndock.com">hello@fyndock.com</a></div>
+        <div class="contact-deet"><span class="contact-deet-icon">✆</span><a href="tel:+919810679800">+91 98106 79800</a></div>
+      </div>
+      <div>
+        <div id="cf-success" class="cf-success">
+          <div style="font-size:28px;color:var(--gold-500);margin-bottom:12px">✓</div>
+          <div style="font-size:18px;font-weight:600;color:#fff;margin-bottom:8px">Message received.</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.42)">We'll be in touch within one business day.</div>
+        </div>
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleContactSubmit(event)">
+          <input type="hidden" name="access_key" value="52804aab-3e47-440d-87d5-1d8482771c31">
+          <input type="hidden" name="subject" value="New enquiry — Auren website">
+          <input type="hidden" name="from_name" value="Auren Website">
+          <input type="hidden" name="replyto" value="hello@fyndock.com">
+          <input type="checkbox" name="botcheck" style="display:none">
+          <div class="cf-grid">
+            <div class="cf-group"><label class="cf-label">Name</label><input class="cf-input" type="text" name="name" placeholder="Priya Sharma" required></div>
+            <div class="cf-group"><label class="cf-label">Company</label><input class="cf-input" type="text" name="company" placeholder="Acme Ventures Pvt. Ltd."></div>
+            <div class="cf-group"><label class="cf-label">Email</label><input class="cf-input" type="email" name="email" placeholder="priya@acmeventures.com" required></div>
+            <div class="cf-group"><label class="cf-label">Phone</label><input class="cf-input" type="tel" name="phone" placeholder="+91 98100 00000"></div>
+            <div class="cf-group full"><label class="cf-label">Service</label>
+              <select class="cf-select" name="service">
+                <option value="">Select a service</option>
+                <option>MIS Reports</option><option>Virtual CFO</option><option>FP&amp;A Advisory</option><option>GST &amp; Compliance</option><option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="cf-group full"><label class="cf-label">Monthly Revenue</label>
+              <select class="cf-select" name="revenue_range">
+                <option value="">Select a range</option>
+                <option>Under ₹10L / month</option><option>₹10L – ₹50L / month</option><option>₹50L – ₹2Cr / month</option><option>₹2Cr+ / month</option><option>VC / PE Fund</option>
+              </select>
+            </div>
+            <div class="cf-group full"><label class="cf-label">Message</label>
+              <textarea class="cf-textarea" name="message" placeholder="Tell us a bit about your business and what you're looking for…"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="cf-submit">Send message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="section-mid section-wrap" id="cta-scene" data-screen-label="10 CTA" style="min-height:60vh;display:flex;align-items:center">
   <div class="section-inner">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center" class="reveal">
@@ -1211,6 +1286,23 @@ const tweakRoot = document.createElement('div');
 tweakRoot.id = 'tweak-root';
 document.body.appendChild(tweakRoot);
 ReactDOM.createRoot(tweakRoot).render(<AurenTweaks />);
+</script>
+
+<script>
+function handleContactSubmit(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('.cf-submit');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(e.target)})
+    .then(r=>r.json())
+    .then(res=>{
+      if(res.success){
+        document.getElementById('contactForm').style.display='none';
+        document.getElementById('cf-success').style.display='block';
+      } else { btn.textContent='Send message →'; btn.disabled=false; }
+    })
+    .catch(()=>{ btn.textContent='Send message →'; btn.disabled=false; });
+}
 </script>
 </body>
 </html>
