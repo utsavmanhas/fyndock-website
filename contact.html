@@ -65,6 +65,30 @@
 .success-icon { width:56px; height:56px; background:var(--status-positive-bg); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; color:var(--status-positive); }
 .success-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:500; color:var(--text-primary); margin-bottom:10px; }
 .success-body { font-size:14px; color:var(--text-secondary); line-height:1.65; }
+
+@media(max-width:767px){
+  /* Nav */
+  .nav-links{display:none}
+  .nav-inner{padding:0 20px}
+
+  /* Hero */
+  .contact-hero{padding:72px 20px 48px}
+  .page-title{font-size:clamp(30px,9vw,44px);line-height:1.12}
+  .page-sub{font-size:15px}
+
+  /* Section wrap horizontal padding */
+  .section-wrap{padding-left:20px;padding-right:20px}
+  .contact-section{padding:48px 0}
+
+  /* Contact layout: stack info above form */
+  .contact-layout{grid-template-columns:1fr;gap:40px}
+
+  /* Form grid: single column on mobile */
+  .form-grid{grid-template-columns:1fr}
+
+  /* Form padding */
+  .success-state{padding:40px 20px}
+}
 </style>
 </head>
 <body>
